@@ -1,5 +1,3 @@
-<script>
-
    //sign up info variables
    let email;
    let name;
@@ -335,5 +333,3 @@
        //send user info outside of function
        return userInfo;
   }
-  
-</script>
