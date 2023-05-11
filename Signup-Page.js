@@ -67,17 +67,16 @@
   	var option = document.createElement("option");
     option.text = makeOptions[i];
     signUpCarMake.add(option);
-	if(i == 0) {
-		signUpCarMake.options[i].disabled = true;
-	}
   }
+
+  signUpCarMake.options[0].disabled = true;
   
   //set model option array (default)
   for(let i = 0; i < emptyOptions.length; i++){
         var option = document.createElement("option");
         option.text = emptyOptions[i];
         signUpCarModel.add(option);
-   		 }
+   }
   
   //Grabbing information on the first form after clicking the button
   signUpButton1.addEventListener('click', function(event) {
@@ -277,12 +276,21 @@
         signUpCarModel.add(option);
    		 }
       		break;
-          
+		    
       //Toyota switch function
+	case "Toyota":
+	for(let i = 0; i < toyotaOptions.length; i++){
+	var option = document.createElement("option");
+	option.text = toyotaOptions[i];
+	signUpCarModel.add(option);
+		 }
+		break;
+          
+      //default(empty) switch function
       default:
-     	  for(let i = 0; i < toyotaOptions.length; i++){
+     	  for(let i = 0; i < emptyOptions.length; i++){
         var option = document.createElement("option");
-        option.text = toyotaOptions[i];
+        option.text = emptyOptions[i];
         signUpCarModel.add(option);
    		 } 
       
