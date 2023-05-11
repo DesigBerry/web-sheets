@@ -66,6 +66,9 @@
   	var option = document.createElement("option");
     option.text = makeOptions[i];
     signUpCarMake.add(option);
+	if(i == 0) {
+	  makeOptions[i].disabled = true;
+	}
   }
   
   //set model option array (default)
