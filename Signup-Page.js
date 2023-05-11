@@ -37,7 +37,7 @@
 
   //html IDs
   //form buttons
-	const signUpButton1 = document.getElementById("signUpButton1");
+  const signUpButton1 = document.getElementById("signUpButton1");
   const signUpButton2 = document.getElementById("signUpButton2");
   //form sections
   const signUpForm2 = document.getElementById("signUpForm2");
@@ -48,6 +48,7 @@
   const buttonsWrap2 = document.getElementById("buttonsWrap2");
   //car make form field
   const signUpCarMake = document.getElementById("signUpCarMake");
+  const signUpCarModel = document.getElementById("signUpCarModel");
   //package buttons
   const carHealthButton = document.getElementById("carHealthButton");
   const carCarButton = document.getElementById("carCarButton");
@@ -67,7 +68,7 @@
     option.text = makeOptions[i];
     signUpCarMake.add(option);
 	if(i == 0) {
-	  makeOptions[i].disabled = true;
+		signUpCarMake.options[i].disabled = true;
 	}
   }
   
