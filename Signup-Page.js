@@ -96,7 +96,26 @@
     for(let i = signUpCarModel.length; i > 0; i--){
         signUpCarModel.remove(signUpCarModel[i]);
    		 }
-    
+    //     //package button listeners
+//     //car health
+//     carHealthButton.addEventListener('click', function(event) {
+//       //package card selection popups
+//       //opacity
+//       carHealthPopUp.style.opacity = '100%';
+//       carCarePopUp.style.opacity = '0%';
+//       carMonitoringPopUp.style.opacity = '0%';
+//       //display
+//       carHealthPopUp.style.display = 'block';
+//       carCarePopUp.style.display = 'none';
+//       carMonitoringPopUp.style.display = 'none';
+//       //outline
+//       carHealthCard.style.outline = '3px solid #f1f1f1';
+// 			carHealthCard.style.outlineOffset = '5px';
+//       carCareCard.style.outline = 'none';
+// 			carCareCard.style.outlineOffset = '0px';
+//       carMonitoringCard.style.outline = 'none';
+// 			carMonitoringCard.style.outlineOffset = '0px';
+//     });
 
     
     //switch car models when make is changed
