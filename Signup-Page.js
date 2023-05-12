@@ -97,66 +97,7 @@
         signUpCarModel.remove(signUpCarModel[i]);
    		 }
     
-//     //package button listeners
-//     //car health
-//     carHealthButton.addEventListener('click', function(event) {
-//       //package card selection popups
-//       //opacity
-//       carHealthPopUp.style.opacity = '100%';
-//       carCarePopUp.style.opacity = '0%';
-//       carMonitoringPopUp.style.opacity = '0%';
-//       //display
-//       carHealthPopUp.style.display = 'block';
-//       carCarePopUp.style.display = 'none';
-//       carMonitoringPopUp.style.display = 'none';
-//       //outline
-//       carHealthCard.style.outline = '3px solid #f1f1f1';
-// 			carHealthCard.style.outlineOffset = '5px';
-//       carCareCard.style.outline = 'none';
-// 			carCareCard.style.outlineOffset = '0px';
-//       carMonitoringCard.style.outline = 'none';
-// 			carMonitoringCard.style.outlineOffset = '0px';
-//     });
-    
-//     //car care
-//     carCareButton.addEventListener('click', function(event) {
-//       //package card selection popups
-//       //opacity
-//       carHealthPopUp.style.opacity = '0%';
-//       carCarePopUp.style.opacity = '100%';
-//       carMonitoringPopUp.style.opacity = '0%';
-//       //display
-//       carHealthPopUp.style.display = 'none';
-//       carCarePopUp.style.display = 'block';
-//       carMonitoringPopUp.style.display = 'none';
-//       //outline
-//       carHealthCard.style.outline = 'none';
-// 			carHealthCard.style.outlineOffset = '0px';
-//       carCareCard.style.outline = '3px solid #f1f1f1';
-// 			carCareCard.style.outlineOffset = '5px';
-//       carMonitoringCard.style.outline = 'none';
-// 			carMonitoringCard.style.outlineOffset = '0px';
-//     });
-    
-//     //car monitoring
-//     carMonitoringButton.addEventListener('click', function(event) {
-//       //package card selection popups
-//       //opacity
-//       carHealthPopUp.style.opacity = '0%';
-//       carCarePopUp.style.opacity = '0%';
-//       carMonitoringPopUp.style.opacity = '100%';
-//       //display
-//       carHealthPopUp.style.display = 'none';
-//       carCarePopUp.style.display = 'none';
-//       carMonitoringPopUp.style.display = 'block';
-//       //outline
-//       carHealthCard.style.outline = 'none';
-// 			carHealthCard.style.outlineOffset = '0px';
-//       carCareCard.style.outline = 'none';
-// 			carCareCard.style.outlineOffset = '0px';
-//       carMonitoringCard.style.outline = '3px solid #f1f1f1';
-// 			carMonitoringCard.style.outlineOffset = '5px';
-//     });
+
     
     //switch car models when make is changed
     switch(makeChoice) {
