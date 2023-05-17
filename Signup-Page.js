@@ -294,6 +294,7 @@
         signUpPackages.style.display = 'block';
         signUpStripe.style.display = 'block';
         buttonsWrap2.style.display = 'none';  
+	console.log("visual on");
       }
       
       //put grabbed info in an array and return it
