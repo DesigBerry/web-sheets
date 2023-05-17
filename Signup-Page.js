@@ -85,7 +85,66 @@
   
   //Grabbing information on the second form after clicking the button
   signUpButton2.addEventListener('click', function(event) {
-    userInfo = grabInfo2();
+	  year = document.getElementById("signUpCarYear");
+    make = document.getElementById("signUpCarMake");
+    model = document.getElementById("signUpCarModel");
+      
+      //show next form and hide the button on prev form
+      if( year && make && model){
+      	signUpPackages.style.opacity = '100%';
+        signUpStripe.style.opacity = '100%';
+        buttonsWrap2.style.opacity = '0%';
+        signUpPackages.style.display = 'block';
+        signUpStripe.style.display = 'block';
+        buttonsWrap2.style.display = 'none';  
+	console.log("visual on");
+      }
+      
+      //put grabbed info in an array and return it
+       let formData = [year.value, make.value, model.value]
+       
+       //combine first and second array of user data in forms
+  	let userInfo = form1Data.concat(formData);
+       
+	//create account in Firebase
+	const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+	let user = auth.createUserWithEmailAndPassword(email.value, password.value);
+	let userId = user.uid;
+	const termAgree = false;
+                const subscription = "None";
+                const bioId = false;
+                const image = "";
+                const imageFile = "";
+                const carData = {
+                    make: make.value,
+                    model: model.value,
+                    carYear: year.value,
+                    air: { airGrade: "A", airValue: 100 },
+                    tires: { tireGrade: "A", tireValue: 100 },
+                    cabin: { cabinGrade: "A", cabinValue: 100 },
+                    brakes: { brakeGrade: "A", brakeValue: 100 },
+                    rotor: { rotorGrade: "A", rotorValue: 100 },
+                    oil: { oilGrade: "A", oilValue: 100 }
+                };
+                await setDoc(doc(db, "Clients", userId), {
+                    email: capitalizedEmail,
+                    firstName: name.value,
+		    phoneNumber: number.value,
+		    city: city.value,
+		    state: state.value,
+                    userId,
+                    termAgree,
+                    subscription,
+                    carData, 
+                    bioId,
+                    image,
+                    imageFile,
+			
+                });
+	  
+	  console.log("submitted");
+	  
+//     grabInfo2();
   });
   
   //When Car Make selection changes
