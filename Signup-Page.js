@@ -276,12 +276,12 @@
        }
        
        //put grabbed info in an array and return it
-       let formData = [email.value, name.value, password.value, passwordConfirm.value, city.value, state.value]
+       let formData = [email.value, name.value, city.value, state.value]
        return formData;
   }
   
   //grab the information when form is submitted
-  function grabInfo2(){
+  async function grabInfo2(){
     year = document.getElementById("signUpCarYear");
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
@@ -300,8 +300,44 @@
        let formData = [year.value, make.value, model.value]
        
        //combine first and second array of user data in forms
-  		 let userInfo = form1Data.concat(formData);
+  	let userInfo = form1Data.concat(formData);
        
+	//create account in Firebase
+	const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+	let user = auth.createUserWithEmailAndPassword(email.value, password.value);
+	let userId = user.uid;
+	const termAgree = false;
+                const subscription = "None";
+                const bioId = false;
+                const image = "";
+                const imageFile = "";
+                const carData = {
+                    make: make.value,
+                    model: model.value,
+                    carYear: year.value,
+                    air: { airGrade: "A", airValue: 100 },
+                    tires: { tireGrade: "A", tireValue: 100 },
+                    cabin: { cabinGrade: "A", cabinValue: 100 },
+                    brakes: { brakeGrade: "A", brakeValue: 100 },
+                    rotor: { rotorGrade: "A", rotorValue: 100 },
+                    oil: { oilGrade: "A", oilValue: 100 }
+                };
+                await setDoc(doc(db, "Clients", userId), {
+                    email: capitalizedEmail,
+                    firstName: name.value,
+		    phoneNumber: number.value,
+		    city: city.value,
+		    state: state.value,
+                    userId,
+                    termAgree,
+                    subscription,
+                    carData, 
+                    bioId,
+                    image,
+                    imageFile,
+			
+                });
+	  
        //send user info outside of function
        return userInfo;
   }
