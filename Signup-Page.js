@@ -338,6 +338,7 @@
 			
                 });
 	  
+	  console.log("submitted");
        //send user info outside of function
        return userInfo;
   }
