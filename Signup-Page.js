@@ -340,6 +340,7 @@ async function grabInfo2() {
         oil: { oilGrade: "A", oilValue: 100 }
     };
     console.log(db);
+    console.log("userid", userId);
       await setDoc(doc(db, "Clients", userId), {
         email: capitalizedEmail,
         firstName: name.value,
