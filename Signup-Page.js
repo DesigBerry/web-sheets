@@ -119,7 +119,7 @@ signUpButton1.addEventListener('click', function (event) {
 
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', function (event) {
-    userInfo = grabInfo2();
+    grabInfo2();
 });
 
 //When Car Make selection changes
@@ -320,8 +320,8 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = createUserWithEmailAndPassword(auth, email.value, password.value);
-    console.log(user);
+    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    console.log("user", user);
     let userId = user.uid;
     const termAgree = false;
     const subscription = "None";
@@ -358,6 +358,4 @@ async function grabInfo2() {
     });
 
     console.log("submitted");
-    //send user info outside of function
-    return userInfo;
 }
