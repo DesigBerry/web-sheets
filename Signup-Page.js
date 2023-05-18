@@ -339,7 +339,8 @@ async function grabInfo2() {
         rotor: { rotorGrade: "A", rotorValue: 100 },
         oil: { oilGrade: "A", oilValue: 100 }
     };
-    const docRef = db.collection('users').doc(userId);
+    console.log(db);
+    const docRef = db.collection('clients').doc(userId);
       await docRef.set({
         email: capitalizedEmail,
         firstName: name.value,
