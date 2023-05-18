@@ -81,7 +81,7 @@
   //Grabbing information on the first form after clicking the button
   signUpButton1.addEventListener('click', function(event) {
     form1Data = grabInfo1();
-	  console.log(form1Data);
+    console.log(form1Data);
   });
   
   //Grabbing information on the second form after clicking the button
