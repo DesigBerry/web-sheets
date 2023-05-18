@@ -306,7 +306,7 @@
        
 	//create account in Firebase
 	const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-	let user = auth.createUserWithEmailAndPassword(email.value, password.value);
+	let user = await auth.createUserWithEmailAndPassword(email.value, password.value); 
 	let userId = user.uid;
 	const termAgree = false;
                 const subscription = "None";
