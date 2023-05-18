@@ -322,7 +322,7 @@ async function grabInfo2() {
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
     let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
     console.log("user", user);
-    let userId = user.uid;
+    let userId = user.user.uid;
     const termAgree = false;
     const subscription = "None";
     const bioId = false;
