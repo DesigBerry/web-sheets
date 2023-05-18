@@ -2,7 +2,11 @@
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
+import { getFirestore } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js
 
+let db = getFirestore();
+
+//Firebase API
 const firebaseConfig = {
     apiKey: "AIzaSyBbkzuOmJcqTgfJyf2fbdciEeP59oJu0jY",
     authDomain: "openbayautos.firebaseapp.com",
@@ -290,7 +294,7 @@ function grabInfo1() {
 }
 
 //grab the information when form is submitted
-function grabInfo2() {
+async function grabInfo2() {
     year = document.getElementById("signUpCarYear");
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
@@ -333,7 +337,8 @@ function grabInfo2() {
         rotor: { rotorGrade: "A", rotorValue: 100 },
         oil: { oilGrade: "A", oilValue: 100 }
     };
-    setDoc(doc(db, "Clients", userId), {
+    const docRef = db.collection('users').doc(userId);
+      await docRef.set({
         email: capitalizedEmail,
         firstName: name.value,
         phoneNumber: number.value,
