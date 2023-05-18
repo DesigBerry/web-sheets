@@ -3,6 +3,7 @@ import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { doc, setDoc } from "firebase/firestore";
 
 //Firebase API
 const firebaseConfig = {
@@ -340,8 +341,7 @@ async function grabInfo2() {
         oil: { oilGrade: "A", oilValue: 100 }
     };
     console.log(db);
-    const docRef = db.collection('Clients').doc(userId);
-      await docRef.set({
+      setDoc(doc(db, "Clients", userId), {
         email: capitalizedEmail,
         firstName: name.value,
         phoneNumber: number.value,
