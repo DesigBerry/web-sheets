@@ -28,8 +28,8 @@ try {
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-//initialize Firestor
-let db = getFirestore(app);
+//initialize Firestore
+const db = getFirestore(app);
 
 //sign up info variables
 let email;
