@@ -341,7 +341,7 @@ async function grabInfo2() {
     };
     console.log(db);
     console.log("userid", userId);
-      await setDoc(doc(db, "Clients", userId), {
+    let customerRecord = {
         email: capitalizedEmail,
         firstName: name.value,
         phoneNumber: number.value,
@@ -354,8 +354,12 @@ async function grabInfo2() {
         bioId,
         image,
         imageFile,
-
-    });
+    };
+    await auth
+      .firestore()
+      .collection("Clients")
+      .doc(userId)
+      .set(customerRecord, { merge: true });
 
     console.log("submitted");
 }
