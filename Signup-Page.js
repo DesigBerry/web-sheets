@@ -278,6 +278,7 @@
        
        //put grabbed info in an array and return it
        let formData = [email.value, name.value, city.value, state.value]
+       console.log(grabInfo1);
        return formData;
   }
   
