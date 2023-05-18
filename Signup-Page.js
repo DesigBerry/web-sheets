@@ -4,8 +4,6 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-let db = getFirestore();
-
 //Firebase API
 const firebaseConfig = {
     apiKey: "AIzaSyBbkzuOmJcqTgfJyf2fbdciEeP59oJu0jY",
@@ -17,6 +15,7 @@ const firebaseConfig = {
     measurementId: "G-36YCSJZJEN"
   };
 
+//initialize Firebase
 let app;
 
 // Check if Firebase app has already been initialized
@@ -28,6 +27,9 @@ try {
 
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+
+//initialize Firestor
+let db = getFirestore();
 
 //sign up info variables
 let email;
