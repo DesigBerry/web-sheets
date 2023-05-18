@@ -29,7 +29,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 //initialize Firestore
-const db = getFirestore(app);
+const db = getFirestore();
 
 //sign up info variables
 let email;
