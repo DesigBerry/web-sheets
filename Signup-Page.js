@@ -339,7 +339,7 @@ async function grabInfo2() {
         rotor: { rotorGrade: "A", rotorValue: 100 },
         oil: { oilGrade: "A", oilValue: 100 }
     };
-    console.log(db);
+    console.log("db", db);
     console.log("userid", userId);
     let customerRecord = {
         email: capitalizedEmail,
@@ -355,8 +355,7 @@ async function grabInfo2() {
         image,
         imageFile,
     };
-    await app
-      .firestore()
+    db
       .collection("Clients")
       .doc(userId)
       .set(customerRecord, { merge: true });
