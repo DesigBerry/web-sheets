@@ -355,7 +355,7 @@ async function grabInfo2() {
         image,
         imageFile,
     };
-    await auth
+    await app
       .firestore()
       .collection("Clients")
       .doc(userId)
