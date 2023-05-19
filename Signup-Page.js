@@ -318,47 +318,47 @@ async function grabInfo2() {
     //combine first and second array of user data in forms
     let userInfo = form1Data.concat(formData);
 
-    //create account in Firebase
-    const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    console.log("user", user);
-    let userId = user.user.uid;
-    const termAgree = false;
-    const subscription = "None";
-    const bioId = false;
-    const image = "";
-    const imageFile = "";
-    const carData = {
-        make: make.value,
-        model: model.value,
-        carYear: year.value,
-        air: { airGrade: "A", airValue: 100 },
-        tires: { tireGrade: "A", tireValue: 100 },
-        cabin: { cabinGrade: "A", cabinValue: 100 },
-        brakes: { brakeGrade: "A", brakeValue: 100 },
-        rotor: { rotorGrade: "A", rotorValue: 100 },
-        oil: { oilGrade: "A", oilValue: 100 }
-    };
-    console.log("db", db);
-    console.log("userid", userId);
-    let customerRecord = {
-        email: capitalizedEmail,
-        firstName: name.value,
-        phoneNumber: number.value,
-        city: city.value,
-        state: state.value,
-        userId,
-        termAgree,
-        subscription,
-        carData,
-        bioId,
-        image,
-        imageFile,
-    };
-    db
-      .collection("Clients")
-      .doc(userId)
-      .set(customerRecord, { merge: true });
+//     //create account in Firebase
+//     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+//     let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+//     console.log("user", user);
+//     let userId = user.user.uid;
+//     const termAgree = false;
+//     const subscription = "None";
+//     const bioId = false;
+//     const image = "";
+//     const imageFile = "";
+//     const carData = {
+//         make: make.value,
+//         model: model.value,
+//         carYear: year.value,
+//         air: { airGrade: "A", airValue: 100 },
+//         tires: { tireGrade: "A", tireValue: 100 },
+//         cabin: { cabinGrade: "A", cabinValue: 100 },
+//         brakes: { brakeGrade: "A", brakeValue: 100 },
+//         rotor: { rotorGrade: "A", rotorValue: 100 },
+//         oil: { oilGrade: "A", oilValue: 100 }
+//     };
+//     console.log("db", db);
+//     console.log("userid", userId);
+//     let customerRecord = {
+//         email: capitalizedEmail,
+//         firstName: name.value,
+//         phoneNumber: number.value,
+//         city: city.value,
+//         state: state.value,
+//         userId,
+//         termAgree,
+//         subscription,
+//         carData,
+//         bioId,
+//         image,
+//         imageFile,
+//     };
+//     db
+//       .collection("Clients")
+//       .doc(userId)
+//       .set(customerRecord, { merge: true });
 
     console.log("submitted");
 }
