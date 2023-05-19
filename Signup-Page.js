@@ -2,7 +2,7 @@
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 //Firebase API
 const firebaseConfig = {
@@ -363,4 +363,8 @@ async function grabInfo2() {
     }, { merge: true });
     
     console.log("submitted");
+    
+    const q = query(collection(db, "Clients"), where("userId", "==", uid));
+    console.log(q);
+    
 }
