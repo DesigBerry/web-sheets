@@ -323,46 +323,44 @@ async function grabInfo2() {
     let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
     console.log("user", user);
     //merge customer info w/ Firebase account
-    const cityRef = doc(db, 'Clients', user.user.uid);
-    setDoc(cityRef, { capital: true }, { merge: true });
+    const userRef = doc(db, 'Clients', user.user.uid);
 
-//     let userId = user.user.uid;
-//     const termAgree = false;
-//     const subscription = "None";
-//     const bioId = false;
-//     const image = "";
-//     const imageFile = "";
-//     const carData = {
-//         make: make.value,
-//         model: model.value,
-//         carYear: year.value,
-//         air: { airGrade: "A", airValue: 100 },
-//         tires: { tireGrade: "A", tireValue: 100 },
-//         cabin: { cabinGrade: "A", cabinValue: 100 },
-//         brakes: { brakeGrade: "A", brakeValue: 100 },
-//         rotor: { rotorGrade: "A", rotorValue: 100 },
-//         oil: { oilGrade: "A", oilValue: 100 }
-//     };
-//     console.log("db", db);
+    let userId = user.user.uid;
+    const termAgree = false;
+    const subscription = "None";
+    const bioId = false;
+    const image = "";
+    const imageFile = "";
+    const carData = {
+        make: make.value,
+        model: model.value,
+        carYear: year.value,
+        air: { airGrade: "A", airValue: 100 },
+        tires: { tireGrade: "A", tireValue: 100 },
+        cabin: { cabinGrade: "A", cabinValue: 100 },
+        brakes: { brakeGrade: "A", brakeValue: 100 },
+        rotor: { rotorGrade: "A", rotorValue: 100 },
+        oil: { oilGrade: "A", oilValue: 100 }
+    };
+    console.log("db", db);
 //     console.log("userid", userId);
 //     let customerRecord = {
-//         email: capitalizedEmail,
-//         firstName: name.value,
-//         phoneNumber: number.value,
-//         city: city.value,
-//         state: state.value,
-//         userId,
-//         termAgree,
-//         subscription,
-//         carData,
-//         bioId,
-//         image,
-//         imageFile,
 //     };
-//     db
-//       .collection("Clients")
-//       .doc(userId)
-//       .set(customerRecord, { merge: true });
-
+    setDoc(userRef, { 
+        email: capitalizedEmail,
+        firstName: name.value,
+        lastName: "",
+        phoneNumber: number.value,
+        city: city.value,
+        state: state.value,
+        userId: userId,
+        termAgree: termAgree,
+        subscription: subscription,
+        carData: carData,
+        bioId: bioId,
+        image: image,
+        imageFile: imageFile,
+    }, { merge: true });
+    
     console.log("submitted");
 }
