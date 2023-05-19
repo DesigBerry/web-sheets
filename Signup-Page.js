@@ -322,6 +322,10 @@ async function grabInfo2() {
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
     let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
     console.log("user", user);
+    //merge customer info w/ Firebase account
+    const cityRef = doc(db, 'Clients', user.user.uid);
+    setDoc(cityRef, { capital: true }, { merge: true });
+
 //     let userId = user.user.uid;
 //     const termAgree = false;
 //     const subscription = "None";
