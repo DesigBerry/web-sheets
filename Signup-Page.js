@@ -318,10 +318,10 @@ async function grabInfo2() {
     //combine first and second array of user data in forms
     let userInfo = form1Data.concat(formData);
 
-//     //create account in Firebase
-//     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-//     let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
-//     console.log("user", user);
+    //create account in Firebase
+    const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    console.log("user", user);
 //     let userId = user.user.uid;
 //     const termAgree = false;
 //     const subscription = "None";
