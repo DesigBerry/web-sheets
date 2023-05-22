@@ -118,7 +118,7 @@ signUpButton1.addEventListener('click', function (event) {
 });
 
 //Grabbing information on the second form after clicking the button
-signUpButton2.addEventListener('click', function (event) {
+signUpButton2.addEventListener('click', async function (event) {
     let user = createUser();
     console.log("user", user);
     //grabStripe(user);
