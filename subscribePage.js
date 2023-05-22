@@ -31,9 +31,9 @@ const auth = getAuth(app);
 //initialize Firestore
 const db = getFirestore();
 
-//get user information doc
+//get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
-    const docRef = doc(db, "Clients", userId);
+    const docRef = doc(db, "Clients", user.uid);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
