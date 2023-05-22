@@ -320,7 +320,18 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    let user = await createUserWithEmailAndPassword(auth, email.value, password.value)
+        .then(() => {
+        console.log("We in there");
+        const docRef = doc(db, "Clients", userId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          console.log("Document data:", docSnap.data());
+        } else {
+          // docSnap.data() will be undefined in this case
+          console.log("No such document!");
+       }
+        });
     console.log("user", user);
     //merge customer info w/ Firebase account
     const userRef = doc(db, 'Clients', user.user.uid);
@@ -360,14 +371,5 @@ async function grabInfo2() {
     }, { merge: true });
     
     console.log("submitted");
-    
-    const docRef = doc(db, "Clients", userId);
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
-    } else {
-      // docSnap.data() will be undefined in this case
-      console.log("No such document!");
-   }
     
 }
