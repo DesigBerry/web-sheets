@@ -2,7 +2,7 @@
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, getDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 //Firebase API
 const firebaseConfig = {
@@ -30,9 +30,6 @@ const auth = getAuth(app);
 
 //initialize Firestore
 const db = getFirestore();
-
-//Firebase variables
-let userId;
 
 //sign up info variables
 let email;
@@ -122,23 +119,7 @@ signUpButton1.addEventListener('click', function (event) {
 
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', function (event) {
-  createUser().then(access => {
-    console.log("userId", access);
-    userId = access;
-    // Use the userId value here or perform any other necessary actions
-  }).catch(error => {
-    console.error("Error creating user:", error);
-  });
-    //grabStripe(user);
-    console.log("Before docRef", userId);
-    const docRef = doc(db, "Clients", userId);
-            const docSnap = getDoc(docRef);
-            if (docSnap.exists()) {
-              console.log("Document data:", docSnap.data());
-            } else {
-              // docSnap.data() will be undefined in this case
-              console.log("No such document!");
-            }
+    createUser();
 });
 
 //When Car Make selection changes
@@ -314,21 +295,8 @@ function grabInfo1() {
     return formData;
 }
 
-// create user in Firebase
+//grab the information when form is submitted
 async function createUser() {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    const user = userCredential.user;
-    console.log("User created with ID:", user.uid);
-    return user.uid;
-  } catch (error) {
-    console.error("Error creating user:", error);
-    throw error; // Rethrow the error to be caught in the outer promise chain
-  }
-}
-
-//Grab Stripe info of user
-async function grabStripe(user) {
     year = document.getElementById("signUpCarYear");
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
@@ -350,53 +318,51 @@ async function grabStripe(user) {
     //combine first and second array of user data in forms
     let userInfo = form1Data.concat(formData);
 
-    console.log("user", user);
     //create account in Firebase
-        const docRef = doc(db, "Clients", user.user.uid);
-            const docSnap = await getDoc(docRef);
-            if (docSnap.exists()) {
-              console.log("Document data:", docSnap.data());
-            } else {
-              // docSnap.data() will be undefined in this case
-              console.log("No such document!");
-            }
+    const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    console.log("user", user);
     //merge customer info w/ Firebase account
-//     const userRef = doc(db, 'Clients', user.user.uid);
+    const userRef = doc(db, 'Clients', user.user.uid);
 
-//     let userId = user.user.uid;
-//     const termAgree = false;
-//     const subscription = "None";
-//     const bioId = false;
-//     const image = "";
-//     const imageFile = "";
-//     const carData = {
-//         make: make.value,
-//         model: model.value,
-//         carYear: year.value,
-//         air: { airGrade: "A", airValue: 100 },
-//         tires: { tireGrade: "A", tireValue: 100 },
-//         cabin: { cabinGrade: "A", cabinValue: 100 },
-//         brakes: { brakeGrade: "A", brakeValue: 100 },
-//         rotor: { rotorGrade: "A", rotorValue: 100 },
-//         oil: { oilGrade: "A", oilValue: 100 }
-//     };
-//     console.log("db", db);
-//     setDoc(userRef, { 
-//         email: capitalizedEmail,
-//         firstName: name.value,
-//         lastName: "",
-//         phoneNumber: number.value,
-//         city: city.value,
-//         state: state.value,
-//         userId: userId,
-//         termAgree: termAgree,
-//         subscription: subscription,
-//         carData: carData,
-//         bioId: bioId,
-//         image: image,
-//         imageFile: imageFile,
-//     }, { merge: true });
+    let userId = user.user.uid;
+    const termAgree = false;
+    const subscription = "None";
+    const bioId = false;
+    const image = "";
+    const imageFile = "";
+    const carData = {
+        make: make.value,
+        model: model.value,
+        carYear: year.value,
+        air: { airGrade: "A", airValue: 100 },
+        tires: { tireGrade: "A", tireValue: 100 },
+        cabin: { cabinGrade: "A", cabinValue: 100 },
+        brakes: { brakeGrade: "A", brakeValue: 100 },
+        rotor: { rotorGrade: "A", rotorValue: 100 },
+        oil: { oilGrade: "A", oilValue: 100 }
+    };
+    console.log("db", db);
+    setDoc(userRef, { 
+        email: capitalizedEmail,
+        firstName: name.value,
+        lastName: "",
+        phoneNumber: number.value,
+        city: city.value,
+        state: state.value,
+        userId: userId,
+        termAgree: termAgree,
+        subscription: subscription,
+        carData: carData,
+        bioId: bioId,
+        image: image,
+        imageFile: imageFile,
+    }, { merge: true });
     
-//     console.log("submitted");
-
+    console.log("submitted");
+    
+    const q = query(collection(db, "Clients"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(q);
+    console.log("quearySnapshot", querySnapshot);
+    
 }
