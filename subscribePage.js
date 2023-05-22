@@ -51,6 +51,7 @@ auth.onAuthStateChanged(async function (user) {
    }
 });
 
+//car health button
 carHealthButton.addEventListener('click', function (event) {
-    window.location.href = "https://us-central1-openbayautos.cloudfunctions.net/webflowSession";
+    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?stripeId=${stripeId}`;
 });
