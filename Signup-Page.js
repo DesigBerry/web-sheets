@@ -320,11 +320,11 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = await createUserWithEmailAndPassword(auth, email.value, password.value)
+    let user = createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((user) => {
         console.log("We in there", user.user.uid);
         const docRef = doc(db, "Clients", user.user.uid);
-        const docSnap = getDoc(docRef);
+        const docSnap = await getDoc(docRef);
           console.log("Document data:", docSnap.data());
         });
     console.log("user", user);
