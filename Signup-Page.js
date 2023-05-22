@@ -2,7 +2,7 @@
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 //Firebase API
 const firebaseConfig = {
@@ -361,8 +361,13 @@ async function grabInfo2() {
     
     console.log("submitted");
     
-    const q = query(collection(db, "Clients"), where("userId", "==", userId));
-    const querySnapshot = await getDocs(q);
-    console.log("quearySnapshot", querySnapshot);
+    const docRef = doc(db, "Clients", userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+   }
     
 }
