@@ -320,13 +320,18 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = createUserWithEmailAndPassword(auth, email.value, password.value)
-        .then(async(user) => {
-        console.log("We in there", user.user.uid);
-        const docRef = doc(db, "Clients", user.user.uid);
-        const docSnap = await getDoc(docRef);
-          console.log("Document data:", docSnap.data());
-        });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+      const user = userCredential.user;
+      console.log("User created with ID:", user.uid);
+
+      const docRef = doc(db, "Clients", user.uid);
+      const docSnap = await getDoc(docRef);
+      console.log("Document data:", docSnap.data());
+    } catch (error) {
+      console.error("Error creating user:", error);
+    }
+
     console.log("user", user);
     //merge customer info w/ Firebase account
     const userRef = doc(db, 'Clients', user.user.uid);
