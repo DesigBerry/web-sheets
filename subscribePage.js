@@ -32,6 +32,10 @@ const auth = getAuth(app);
 const db = getFirestore();
 let stripeId;
 
+//html Ids
+//buttons
+const carHealthButton = document.getElementById("carHealthButton");
+
 //get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
     const docRef = doc(db, "Clients", user.uid);
@@ -45,4 +49,8 @@ auth.onAuthStateChanged(async function (user) {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
    }
+});
+
+carHealthButton.addEventListener('click', function (event) {
+    window.location.href = "https://us-central1-openbayautos.cloudfunctions.net/webflowSession";
 });
