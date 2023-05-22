@@ -127,7 +127,7 @@ signUpButton2.addEventListener('click', function (event) {
   });
     //grabStripe(user);
     const docRef = doc(db, "Clients", userId);
-            const docSnap = await getDoc(docRef);
+            const docSnap = getDoc(docRef);
             if (docSnap.exists()) {
               console.log("Document data:", docSnap.data());
             } else {
