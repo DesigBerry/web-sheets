@@ -118,9 +118,13 @@ signUpButton1.addEventListener('click', function (event) {
 });
 
 //Grabbing information on the second form after clicking the button
-signUpButton2.addEventListener('click', async function (event) {
-    let userId = createUser();
+signUpButton2.addEventListener('click', function (event) {
+  createUser().then(userId => {
     console.log("userId", userId);
+    // Use the userId value here or perform any other necessary actions
+  }).catch(error => {
+    console.error("Error creating user:", error);
+  });
     //grabStripe(user);
     const docRef = doc(db, "Clients", userId);
             const docSnap = await getDoc(docRef);
@@ -305,13 +309,17 @@ function grabInfo1() {
     return formData;
 }
 
-//create user in Firebase
+// create user in Firebase
 async function createUser() {
-        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-        const user = userCredential.user;
-        console.log("User created with ID:", user.uid);
-    
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+    const user = userCredential.user;
+    console.log("User created with ID:", user.uid);
     return user.uid;
+  } catch (error) {
+    console.error("Error creating user:", error);
+    throw error; // Rethrow the error to be caught in the outer promise chain
+  }
 }
 
 //Grab Stripe info of user
