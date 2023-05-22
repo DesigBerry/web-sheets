@@ -343,9 +343,6 @@ async function grabInfo2() {
         oil: { oilGrade: "A", oilValue: 100 }
     };
     console.log("db", db);
-//     console.log("userid", userId);
-//     let customerRecord = {
-//     };
     setDoc(userRef, { 
         email: capitalizedEmail,
         firstName: name.value,
@@ -364,7 +361,7 @@ async function grabInfo2() {
     
     console.log("submitted");
     
-    const q = query(collection(db, "Clients"), where("userId", "==", uid));
+    const q = query(collection(db, "Clients"), where("userId", "==", userId));
     console.log(q);
     
 }
