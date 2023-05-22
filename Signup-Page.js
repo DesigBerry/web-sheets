@@ -320,25 +320,28 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-      const user = userCredential.user;
-      console.log("User created with ID:", user.uid);
+     try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        const user = userCredential.user;
+        console.log("User created with ID:", user.uid);
 
-      const docRef = doc(db, "Clients", user.uid);
-      getDoc(doc(db, "Clients", user.uid)).then(docSnap => {
+        const docRef = doc(db, "Clients", user.uid);
+
+        const unsubscribe = onSnapshot(docRef, (docSnap) => {
           if (docSnap.exists()) {
             console.log("Document data:", docSnap.data());
+            // Handle the document data here
           } else {
             console.log("No such document!");
           }
-        })
 
-    } 
-    catch(e) {
+          // Unsubscribe from further snapshot updates
+          unsubscribe();
+        });
+      } 
+      catch (e) {
         console.log(e);
-    }    
-    console.log("user", user);
+      }
     //merge customer info w/ Firebase account
     const userRef = doc(db, 'Clients', user.user.uid);
 
