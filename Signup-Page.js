@@ -119,7 +119,9 @@ signUpButton1.addEventListener('click', function (event) {
 
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', function (event) {
-    grabInfo2();
+    let user = createUser();
+    grabStripe(user);
+    
 });
 
 //When Car Make selection changes
@@ -296,7 +298,17 @@ function grabInfo1() {
 }
 
 //grab the information when form is submitted
-async function grabInfo2() {
+async function createUser() {
+    //create account in Firebase
+        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        const user = userCredential.user;
+        console.log("User created with ID:", user.uid);
+    
+    return user;
+}
+
+//Grab Stripe info of user
+async function grabStripe(user) {
     year = document.getElementById("signUpCarYear");
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
@@ -320,65 +332,52 @@ async function grabInfo2() {
 
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
-        const user = userCredential.user;
-        console.log("User created with ID:", user.uid);
 
         const docRef = doc(db, "Clients", user.uid);
-
-        const unsubscribe = onSnapshot(docRef, (docSnap) => {
-          if (docSnap.exists()) {
-            console.log("Document data:", docSnap.data());
-            // Handle the document data here
-          } else {
-            console.log("No such document!");
-          }
-
-          // Unsubscribe from further snapshot updates
-          unsubscribe();
-        });
-      } 
-      catch (e) {
-        console.log(e);
-      }
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              console.log("Document data:", docSnap.data());
+            } else {
+              // docSnap.data() will be undefined in this case
+              console.log("No such document!");
+            }
     //merge customer info w/ Firebase account
-    const userRef = doc(db, 'Clients', user.user.uid);
+//     const userRef = doc(db, 'Clients', user.user.uid);
 
-    let userId = user.user.uid;
-    const termAgree = false;
-    const subscription = "None";
-    const bioId = false;
-    const image = "";
-    const imageFile = "";
-    const carData = {
-        make: make.value,
-        model: model.value,
-        carYear: year.value,
-        air: { airGrade: "A", airValue: 100 },
-        tires: { tireGrade: "A", tireValue: 100 },
-        cabin: { cabinGrade: "A", cabinValue: 100 },
-        brakes: { brakeGrade: "A", brakeValue: 100 },
-        rotor: { rotorGrade: "A", rotorValue: 100 },
-        oil: { oilGrade: "A", oilValue: 100 }
-    };
-    console.log("db", db);
-    setDoc(userRef, { 
-        email: capitalizedEmail,
-        firstName: name.value,
-        lastName: "",
-        phoneNumber: number.value,
-        city: city.value,
-        state: state.value,
-        userId: userId,
-        termAgree: termAgree,
-        subscription: subscription,
-        carData: carData,
-        bioId: bioId,
-        image: image,
-        imageFile: imageFile,
-    }, { merge: true });
+//     let userId = user.user.uid;
+//     const termAgree = false;
+//     const subscription = "None";
+//     const bioId = false;
+//     const image = "";
+//     const imageFile = "";
+//     const carData = {
+//         make: make.value,
+//         model: model.value,
+//         carYear: year.value,
+//         air: { airGrade: "A", airValue: 100 },
+//         tires: { tireGrade: "A", tireValue: 100 },
+//         cabin: { cabinGrade: "A", cabinValue: 100 },
+//         brakes: { brakeGrade: "A", brakeValue: 100 },
+//         rotor: { rotorGrade: "A", rotorValue: 100 },
+//         oil: { oilGrade: "A", oilValue: 100 }
+//     };
+//     console.log("db", db);
+//     setDoc(userRef, { 
+//         email: capitalizedEmail,
+//         firstName: name.value,
+//         lastName: "",
+//         phoneNumber: number.value,
+//         city: city.value,
+//         state: state.value,
+//         userId: userId,
+//         termAgree: termAgree,
+//         subscription: subscription,
+//         carData: carData,
+//         bioId: bioId,
+//         image: image,
+//         imageFile: imageFile,
+//     }, { merge: true });
     
-    console.log("submitted");
-    
+//     console.log("submitted");
+
 }
