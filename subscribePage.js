@@ -33,4 +33,4 @@ const db = getFirestore();
 
 auth.onAuthStateChanged( function (user) {
   console.log("Subscribe", userId);
-)};
+});
