@@ -325,12 +325,7 @@ async function grabInfo2() {
         console.log("We in there", user.user.uid);
         const docRef = doc(db, "Clients", user.user.uid);
         const docSnap = getDoc(docRef);
-        if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
-        } else {
-          // docSnap.data() will be undefined in this case
-          console.log("No such document!");
-       }
         });
     console.log("user", user);
     //merge customer info w/ Firebase account
