@@ -333,7 +333,7 @@ async function grabStripe(user) {
     //create account in Firebase
     const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
 
-        const docRef = doc(db, "Clients", user.uid);
+        const docRef = doc(db, "Clients", user.user.uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
               console.log("Document data:", docSnap.data());
