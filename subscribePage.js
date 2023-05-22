@@ -32,5 +32,5 @@ const auth = getAuth(app);
 const db = getFirestore();
 
 auth.onAuthStateChanged( function (user) {
-  console.log("Subscribe", userId);
+  console.log("Subscribe", user.uid);
 });
