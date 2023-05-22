@@ -120,8 +120,16 @@ signUpButton1.addEventListener('click', function (event) {
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', function (event) {
     let user = createUser();
-    grabStripe(user);
-    
+    console.log("user", user);
+    //grabStripe(user);
+    const docRef = doc(db, "Clients", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              console.log("Document data:", docSnap.data());
+            } else {
+              // docSnap.data() will be undefined in this case
+              console.log("No such document!");
+            }
 });
 
 //When Car Make selection changes
