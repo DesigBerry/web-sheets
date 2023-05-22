@@ -120,7 +120,7 @@ signUpButton1.addEventListener('click', function (event) {
 //create user in Firebase
 signUpButton2.addEventListener('click', function (event) {
     createUser();
-    window.location.href = "www.openbayautos.com/subscribe";
+//     window.location.href = "/subscribe";
 });
 
 //When Car Make selection changes
