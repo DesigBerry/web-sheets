@@ -30,6 +30,7 @@ const auth = getAuth(app);
 
 //initialize Firestore
 const db = getFirestore();
+let stripeId;
 
 //get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
@@ -37,6 +38,9 @@ auth.onAuthStateChanged(async function (user) {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
+      let docData = docSnap.data();
+      stripeId = docData["stripeId"];
+      console.log("stripeId", stripeId);
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
