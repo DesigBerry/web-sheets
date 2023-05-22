@@ -119,10 +119,10 @@ signUpButton1.addEventListener('click', function (event) {
 
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', async function (event) {
-    let user = createUser();
-    console.log("user", user);
+    let userId = createUser();
+    console.log("userId", userId);
     //grabStripe(user);
-    const docRef = doc(db, "Clients", user.uid);
+    const docRef = doc(db, "Clients", userId);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
               console.log("Document data:", docSnap.data());
@@ -305,14 +305,13 @@ function grabInfo1() {
     return formData;
 }
 
-//grab the information when form is submitted
+//create user in Firebase
 async function createUser() {
-    //create account in Firebase
         const userCredential = await createUserWithEmailAndPassword(auth, email.value, password.value);
         const user = userCredential.user;
         console.log("User created with ID:", user.uid);
     
-    return user;
+    return user.uid;
 }
 
 //Grab Stripe info of user
