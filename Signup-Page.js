@@ -362,6 +362,7 @@ async function grabInfo2() {
     console.log("submitted");
     
     const q = query(collection(db, "Clients"), where("userId", "==", userId));
-    console.log(q);
+    const querySnapshot = await getDocs(q);
+    console.log("quearySnapshot", querySnapshot);
     
 }
