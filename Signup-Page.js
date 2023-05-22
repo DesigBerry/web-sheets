@@ -323,7 +323,7 @@ async function grabInfo2() {
     let user = await createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((user) => {
         console.log("We in there", user);
-        const docRef = doc(db, "Clients", userId);
+        const docRef = doc(db, "Clients", user.user.uid);
         const docSnap = getDoc(docRef);
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
