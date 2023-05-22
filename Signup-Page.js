@@ -31,6 +31,9 @@ const auth = getAuth(app);
 //initialize Firestore
 const db = getFirestore();
 
+//Firebase variables
+let userId;
+
 //sign up info variables
 let email;
 let name;
@@ -119,13 +122,15 @@ signUpButton1.addEventListener('click', function (event) {
 
 //Grabbing information on the second form after clicking the button
 signUpButton2.addEventListener('click', function (event) {
-  createUser().then(userId => {
-    console.log("userId", userId);
+  createUser().then(access => {
+    console.log("userId", access);
+    userId = access;
     // Use the userId value here or perform any other necessary actions
   }).catch(error => {
     console.error("Error creating user:", error);
   });
     //grabStripe(user);
+    console.log("Before docRef", userId);
     const docRef = doc(db, "Clients", userId);
             const docSnap = getDoc(docRef);
             if (docSnap.exists()) {
