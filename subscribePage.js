@@ -31,6 +31,14 @@ const auth = getAuth(app);
 //initialize Firestore
 const db = getFirestore();
 
+//get user information doc
 auth.onAuthStateChanged( function (user) {
-  console.log("Subscribe", user.uid);
+    const docRef = doc(db, "Clients", userId);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+   }
 });
