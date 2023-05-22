@@ -330,9 +330,8 @@ async function grabStripe(user) {
     //combine first and second array of user data in forms
     let userInfo = form1Data.concat(formData);
 
+    console.log("user", user);
     //create account in Firebase
-    const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-
         const docRef = doc(db, "Clients", user.user.uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
