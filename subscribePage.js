@@ -32,7 +32,7 @@ const auth = getAuth(app);
 const db = getFirestore();
 
 //get user information doc
-auth.onAuthStateChanged( function (user) {
+auth.onAuthStateChanged(async function (user) {
     const docRef = doc(db, "Clients", userId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
