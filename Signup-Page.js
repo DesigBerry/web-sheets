@@ -326,11 +326,13 @@ async function grabInfo2() {
       console.log("User created with ID:", user.uid);
 
       const docRef = doc(db, "Clients", user.uid);
-      const docSnap = await getDoc(docRef);
-      console.log("Document data:", docSnap.data());
-    } catch (error) {
-      console.error("Error creating user:", error);
-    }
+      getDoc(doc(db, "Clients", user.uid)).then(docSnap => {
+          if (docSnap.exists()) {
+            console.log("Document data:", docSnap.data());
+          } else {
+            console.log("No such document!");
+          }
+        })
 
     console.log("user", user);
     //merge customer info w/ Firebase account
