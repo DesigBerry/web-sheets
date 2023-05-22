@@ -334,6 +334,10 @@ async function grabInfo2() {
           }
         })
 
+    } 
+    catch(e) {
+        console.log(e);
+    }    
     console.log("user", user);
     //merge customer info w/ Firebase account
     const userRef = doc(db, 'Clients', user.user.uid);
