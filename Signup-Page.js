@@ -324,7 +324,7 @@ async function grabInfo2() {
         .then(() => {
         console.log("We in there");
         const docRef = doc(db, "Clients", userId);
-        const docSnap = await getDoc(docRef);
+        const docSnap = getDoc(docRef);
         if (docSnap.exists()) {
           console.log("Document data:", docSnap.data());
         } else {
