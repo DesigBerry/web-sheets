@@ -118,9 +118,9 @@ signUpButton1.addEventListener('click', function (event) {
 });
 
 //create user in Firebase
-signUpButton2.addEventListener('click', function (event) {
-    createUser();
-//     window.location.href = "/subscribe";
+signUpButton2.addEventListener('click', async function (event) {
+    await createUser();
+    window.location.href = "/subscribe";
 });
 
 //When Car Make selection changes
