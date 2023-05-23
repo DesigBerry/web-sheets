@@ -31,6 +31,8 @@ const auth = getAuth(app);
 //initialize Firestore
 const db = getFirestore();
 let stripeId;
+let email;
+let name;
 
 //html Ids
 //buttons
@@ -44,7 +46,11 @@ auth.onAuthStateChanged(async function (user) {
       console.log("Document data:", docSnap.data());
       let docData = docSnap.data();
       stripeId = docData["stripeId"];
+      email = docData["email"];
+      name = docData["firstName"];
       console.log("stripeId", stripeId);
+      console.log("email", email);
+      console.log("name", name);
     } else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
