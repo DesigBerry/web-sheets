@@ -53,5 +53,5 @@ auth.onAuthStateChanged(async function (user) {
 
 //car health button
 carHealthButton.addEventListener('click', function (event) {
-    window.location.href = "https://us-central1-openbayautos.cloudfunctions.net/webflowSession?client_reference_id="+stripeId:
+    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?client_reference_id=${stripeId}`;
 });
