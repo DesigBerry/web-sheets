@@ -42,8 +42,6 @@ var publicPages = [
   '/signin',
 ];
 
-console.log("signUp", signUp);
-
 //function called whenever something happens with "auth"
 auth.onAuthStateChanged( function (user) {
   var currentPath = window.location.pathname;
@@ -65,7 +63,7 @@ auth.onAuthStateChanged( function (user) {
   } else {
       // User is signed out.
       if (privatePages.includes(currentPath)) {
-          window.location.replace('/home');
+          window.location.replace('/');
       } else {
           console.log('No user is logged in');
 //           loadingScreen.style.display = 'none';
@@ -84,5 +82,5 @@ auth.onAuthStateChanged( function (user) {
 logOut.addEventListener('click', logout);
 function logout() {
   auth.signOut();
-  window.location.replace('/home');
+  window.location.replace('/');
 }
