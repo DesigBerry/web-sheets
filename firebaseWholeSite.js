@@ -42,6 +42,8 @@ var publicPages = [
   '/signin',
 ];
 
+console.log("signUp", signUp);
+
 //function called whenever something happens with "auth"
 auth.onAuthStateChanged( function (user) {
   var currentPath = window.location.pathname;
