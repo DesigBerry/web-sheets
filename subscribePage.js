@@ -34,10 +34,13 @@ let stripeId;
 let email;
 let name;
 let docData;
+let priceId;
 
 //html Ids
 //buttons
 const carHealthButton = document.getElementById("carHealthButton");
+const carCareButton = document.getElementById("carCareButton");
+const carMonitoringButton = document.getElementById("carMonitoringButton");
 
 //get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
@@ -58,9 +61,21 @@ auth.onAuthStateChanged(async function (user) {
    }
 });
 
+//button functions
 //car health button
 carHealthButton.addEventListener('click', function (event) {
-    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?prefilled_email=${email}&client_reference_id=${stripeId}&document_data=${docData}`;
-//     let link = `https://buy.stripe.com/test_fZebJW8OneA5dDq8wx?prefilled_email=${email}&client_reference_id=${stripeId}`;
-//     console.log("link", link);
+    priceId = 'price_1MvNnbDP5LxOspIEg7tFpQwt';
+    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?prefilled_email=${email}&client_reference_id=${stripeId}&document_data=${docData}&price_id=${priceId}`;
+});
+
+//car care button
+carCareButton.addEventListener('click', function (event) {
+    priceId = 'price_1MvNkODP5LxOspIEcqcIpS0A';
+    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?prefilled_email=${email}&client_reference_id=${stripeId}&document_data=${docData}&price_id=${priceId}`;
+});
+
+//car monitoring button
+carMonitoringButton.addEventListener('click', function (event) {
+    priceId = 'price_1MvMr3DP5LxOspIEa2qAuSGa';
+    window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?prefilled_email=${email}&client_reference_id=${stripeId}&document_data=${docData}&price_id=${priceId}`;
 });
