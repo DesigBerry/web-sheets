@@ -1,7 +1,7 @@
 //Firebase startup/get its shit
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 
 //Firebase API
 const firebaseConfig = {
@@ -29,4 +29,33 @@ const auth = getAuth(app);
 
 //html elements
 //buttons
-const signInEmail = document.getElementById("signInEmail");
+const forgotPassEmail = document.getElementById("forgotPassEmail");
+const forgotPassButton = document.getElementById("forgotPassButton");
+//success & error messages
+const successMessage = document.getElementById("successMessage");
+const errorMessage = document.getElementById("errorMessage");
+//forgot password form
+const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+
+//reset password button
+forgotPassButton.addEventListener('click', function(event) {                        
+    //password reset function
+    sendPasswordResetEmail(auth, email)
+            .then(() => {
+                console.log("password should be sent")
+                alert('Check your email for password reset!');
+                forgotPasswordForm.style.display ='none';
+                errorMessage.style.display ='none';
+                successMessage.style.display ='block';
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage2 = error.message;
+                console.log(errorMessage2);
+                alert('Problem with sending reset email :(');
+                forgotPasswordForm.style.display ='none';
+                errorMessage.style.display ='block';
+                successMessage.style.display ='none';
+                // ..
+            });
+});
