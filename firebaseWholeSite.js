@@ -84,4 +84,5 @@ auth.onAuthStateChanged( function (user) {
 logOut.addEventListener('click', logout);
 function logout() {
   auth.signOut();
+  window.location.replace('/home');
 }
