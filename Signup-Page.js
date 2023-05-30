@@ -285,14 +285,17 @@ function grabInfo1() {
 
     //show next form and hide the button on prev form
     if (email && name && password && passwordConfirm && city && state) {
-        if (password === passwordConfirm) {
+        //password and confirm password match
+        if (password == passwordConfirm) {
+            //display next form
             signUpForm2.style.opacity = '100%';
             buttonsWrap1.style.opacity = '0%';
             signUpForm2.style.display = 'block';
             buttonsWrap1.style.display = 'none';
         }
         else {
-            alert ("passwords do not match");
+            //show error message
+            alert ("Confirm Password does not match the password");
         }
     }
 
