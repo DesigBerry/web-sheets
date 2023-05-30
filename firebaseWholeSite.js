@@ -23,12 +23,12 @@ const auth = getAuth(app);
 
 //html ids
 //nav button ids
-const notSignedSchedule = document.getElementById('notSignedSchedule');
-const signUp = document.getElementById('signUp');
-const accountPageLink = document.getElementById('accountPageLink');
-const logOut = document.getElementById('logOut');
-const logInButton = document.getElementById('logInButton');
-const scheduleAppointmentButton = document.getElementById('scheduleAppointmentButton');
+let notSignedSchedule = document.getElementById('notSignedSchedule');
+let signUp = document.getElementById('signUp');
+let accountPageLink = document.getElementById('accountPageLink');
+let logOut = document.getElementById('logOut');
+let logInButton = document.getElementById('logInButton');
+let scheduleAppointmentButton = document.getElementById('scheduleAppointmentButton');
 
 //pages hidden when user ISN'T signed in
 var privatePages = [
