@@ -29,7 +29,6 @@ const auth = getAuth(app);
 
 //html elements
 //buttons
-const forgotPassEmail = document.getElementById("forgotPassEmail");
 const forgotPassButton = document.getElementById("forgotPassButton");
 //success & error messages
 const successMessage = document.getElementById("successMessage");
@@ -38,7 +37,7 @@ const errorMessage = document.getElementById("errorMessage");
 const forgotPasswordForm = document.getElementById("forgotPasswordForm");
 
 //set variables
-let email = forgotPassEmail.value;
+let email = document.getElementById("forgotPassEmail");
 
 //reset password button
 forgotPassButton.addEventListener('click', function(event) {      
@@ -47,8 +46,8 @@ forgotPassButton.addEventListener('click', function(event) {
 
 //password reset function
 async function forgotPassSend() { 
-    console.log("email in da function", email);
-    sendPasswordResetEmail(auth, email)
+    console.log("email in da function", email.value);
+    sendPasswordResetEmail(auth, email.value)
         .then(() => {
             forgotPasswordForm.style.display ='none';
             errorMessage.style.display ='none';
