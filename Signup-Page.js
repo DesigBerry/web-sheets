@@ -284,9 +284,9 @@ function grabInfo1() {
     state = document.getElementById("signUpState");
 
     //show next form and hide the button on prev form
-    if (email && name && password && passwordConfirm && city && state) {
+    if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
         //password and confirm password match
-        if (password == passwordConfirm) {
+        if (password.value == passwordConfirm.value) {
             //display next form
             signUpForm2.style.opacity = '100%';
             buttonsWrap1.style.opacity = '0%';
@@ -295,7 +295,7 @@ function grabInfo1() {
         }
         else {
             //show error message
-            alert ("Confirm Password does not match the password");
+            alert ("Passwords do not match");
         }
     }
 
