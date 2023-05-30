@@ -52,11 +52,7 @@ forgotPassButton.addEventListener('click', function(event) {
                 successMessage.style.display ='block';
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage2 = error.message;
-                console.log(errorMessage2);
-                alert('Problem with sending reset email :(');
-                forgotPasswordForm.style.display ='none';
+                forgotPasswordForm.style.display ='block';
                 errorMessage.style.display ='block';
                 successMessage.style.display ='none';
                 // ..
