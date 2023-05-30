@@ -41,7 +41,8 @@ const forgotPasswordForm = document.getElementById("forgotPasswordForm");
 let email = forgotPassEmail.value;
 
 //reset password button
-forgotPassButton.addEventListener('click', async function(event) {                        
+forgotPassButton.addEventListener('click', async function(event) {      
+    console.log("email", email);
     //password reset function
     sendPasswordResetEmail(auth, email)
             .then(() => {
