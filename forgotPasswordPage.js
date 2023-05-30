@@ -50,6 +50,7 @@ forgotPassButton.addEventListener('click', async function(event) {
                 successMessage.style.display ='block';
             })
             .catch((error) => {
+                console.log("error", error);
                 forgotPasswordForm.style.display ='block';
                 errorMessage.style.display ='block';
                 successMessage.style.display ='none';
