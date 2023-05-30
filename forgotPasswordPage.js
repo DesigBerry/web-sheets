@@ -37,6 +37,9 @@ const errorMessage = document.getElementById("errorMessage");
 //forgot password form
 const forgotPasswordForm = document.getElementById("forgotPasswordForm");
 
+//set variables
+let email = forgotPassEmail.value;
+
 //reset password button
 forgotPassButton.addEventListener('click', function(event) {                        
     //password reset function
