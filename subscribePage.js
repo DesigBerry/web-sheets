@@ -33,6 +33,7 @@ const db = getFirestore();
 let stripeId;
 let email;
 let name;
+let docData;
 
 //html Ids
 //buttons
@@ -44,7 +45,7 @@ auth.onAuthStateChanged(async function (user) {
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
-      let docData = docSnap.data();
+      docData = docSnap.data();
       stripeId = docData["stripeId"];
       email = docData["email"];
       name = docData["firstName"];
