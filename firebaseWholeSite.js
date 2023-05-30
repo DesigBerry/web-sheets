@@ -55,7 +55,7 @@ auth.onAuthStateChanged( function (user) {
           console.log('User is logged in!');
           console.log('Email: ' + user.email);
           console.log('UID: ' + user.uid);
-          loadingScreen.style.display = 'none';
+//           loadingScreen.style.display = 'none';
           // New Home links
           notSignedSchedule.style.display = 'none';
           signUp.style.display = 'none';
@@ -68,7 +68,7 @@ auth.onAuthStateChanged( function (user) {
           window.location.replace('/home');
       } else {
           console.log('No user is logged in');
-          loadingScreen.style.display = 'none';
+//           loadingScreen.style.display = 'none';
           // New home links
           accountPageLink.style.display = 'none';
           logOut.style.display = 'none';
