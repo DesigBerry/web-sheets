@@ -46,7 +46,7 @@ signInButton.addEventListener('click', function() {
 //execute login with Firebase
 function login(auth) {
   signInButton.style.display = '';
-  signInError.style.display = 'none';
+//   signInError.style.display = 'none';
   var email = signInEmail.value;
   var password = signInPassword.value;
 
