@@ -41,20 +41,23 @@ const forgotPasswordForm = document.getElementById("forgotPasswordForm");
 let email = forgotPassEmail.value;
 
 //reset password button
-forgotPassButton.addEventListener('click', async function(event) {      
-    console.log("email", email);
-    //password reset function
-    sendPasswordResetEmail(auth, email)
-            .then(() => {
-                forgotPasswordForm.style.display ='none';
-                errorMessage.style.display ='none';
-                successMessage.style.display ='block';
-            })
-            .catch((error) => {
-                console.log("error", error);
-                forgotPasswordForm.style.display ='block';
-                errorMessage.style.display ='block';
-                successMessage.style.display ='none';
-                // ..
-            });
+forgotPassButton.addEventListener('click', function(event) {      
+    forgotPassSend();
 });
+
+//password reset function
+async function forgotPassSend() { 
+    console.log("email in da function", email);
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            forgotPasswordForm.style.display ='none';
+            errorMessage.style.display ='none';
+            successMessage.style.display ='block';
+        })
+        .catch((error) => {
+            console.log("error", error);
+            forgotPasswordForm.style.display ='block';
+            errorMessage.style.display ='block';
+            successMessage.style.display ='none';
+        });
+}
