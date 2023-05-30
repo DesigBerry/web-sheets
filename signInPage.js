@@ -57,7 +57,6 @@ signInButton.addEventListener('click', function() {
       signInError.innerText = errorMessage;
       signInError.style.display = 'block';
     });
-});
 
 
 function login(auth) {
