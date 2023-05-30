@@ -43,22 +43,7 @@ signInButton.addEventListener('click', function() {
   var email = signInEmail.value;
   var password = signInPassword.value;
 
-//   //handle authentication using Firebase
-//   auth.signInWithEmailAndPassword(email, password)
-//     .then(function () {
-//       window.location.replace('./myaccount');
-//     })
-//     .catch(function (error) {
-//       var errorCode = error.code;
-//       var errorMessage = error.message;
-//       console.log('Error code: ' + errorCode);
-//       console.log('Error message: ' + errorMessage);
-//       signInButton.style.display = 'block';
-//       signInError.innerText = errorMessage;
-//       signInError.style.display = 'block';
-//     });
-
-
+//execute login with Firebase
 function login(auth) {
   signInButton.style.display = '';
   signInError.style.display = 'none';
@@ -76,8 +61,8 @@ function login(auth) {
       console.log('Error code hi: ' + errorCode);
       console.log('Error message: ' + errorMessage);
       signInButton.style.display = 'block';
-      signInError.innerText = errorMessage;
-      signInError.style.display = 'block';
+//       signInError.innerText = errorMessage;
+//       signInError.style.display = 'block';
     });
 }
 
