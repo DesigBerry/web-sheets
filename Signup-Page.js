@@ -285,10 +285,15 @@ function grabInfo1() {
 
     //show next form and hide the button on prev form
     if (email && name && password && passwordConfirm && city && state) {
-        signUpForm2.style.opacity = '100%';
-        buttonsWrap1.style.opacity = '0%';
-        signUpForm2.style.display = 'block';
-        buttonsWrap1.style.display = 'none';
+        if (password === passwordConfirm) {
+            signUpForm2.style.opacity = '100%';
+            buttonsWrap1.style.opacity = '0%';
+            signUpForm2.style.display = 'block';
+            buttonsWrap1.style.display = 'none';
+        }
+        else {
+            alert ("passwords do not match");
+        }
     }
 
     //put grabbed info in an array and return it
