@@ -45,12 +45,12 @@ let publicPages = [
 ];
 
 //check if user is signed in when page loads
-checkUserStatus();
+checkUserStatus(user);
 
-//function called whenever authentication state changes
-auth.onAuthStateChanged( function () {
-  checkUserStatus();
-});
+// //function called whenever authentication state changes
+// auth.onAuthStateChanged( function () {
+//   checkUserStatus();
+// });
 
 //function to check if user is signed in
 function checkUserStatus(user) {
@@ -90,9 +90,9 @@ function checkUserStatus(user) {
 
 //logout function
 logOut.addEventListener('click', logout);
-function logout() {
+function logout(user) {
   auth.signOut();
-  window.location.replace('/');
+  checkUserStatus(user);
 }
 
 //faq nav link
