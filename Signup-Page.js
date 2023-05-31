@@ -114,7 +114,6 @@ for (let i = 0; i < emptyOptions.length; i++) {
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
     form1Data = grabInfo1();
-//     createHsCustomer();
     console.log(form1Data);
 });
 
@@ -304,39 +303,6 @@ function grabInfo1() {
     let formData = [email.value, name.value, city.value, state.value]
     return formData;
 }
-
-// //create customer in Hubspot
-// function createHsCustomer() {
-
-//     var request = require("request");
-
-//     var options = { method: 'POST',
-//       url: 'https://api.hubapi.com/contacts/v1/contact/',
-//       qs: { hapikey: 'demo' },
-//       headers: 
-//        { 
-//          'Authorization': `Bearer pat-na1-ec59815b-28e3-4afc-8956-e29c98101090`,
-//          'Content-Type': 'application/json' },
-//       body: 
-//        { properties: 
-//           [ { property: 'email', value: 'testingapis@hubspot.com' },
-//             { property: 'firstname', value: 'test' },
-//             { property: 'lastname', value: 'testerson' },
-//             { property: 'website', value: 'http://hubspot.com' },
-//             { property: 'company', value: 'HubSpot' },
-//             { property: 'phone', value: '555-122-2323' },
-//             { property: 'address', value: '25 First Street' },
-//             { property: 'city', value: 'Cambridge' },
-//             { property: 'state', value: 'MA' },
-//             { property: 'zip', value: '02139' } ] },
-//       json: true };
-
-//     request(options, function (error, response, body) {
-//       if (error) throw new Error(error);
-
-//       console.log(body);
-//     });
-// }
 
 //grab the information & create account in Firebase
 async function createUser() {
