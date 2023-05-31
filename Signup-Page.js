@@ -4,6 +4,9 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
+//Hubspot startup
+var request = require("request");
+
 //Firebase API
 const firebaseConfig = {
     apiKey: "AIzaSyBbkzuOmJcqTgfJyf2fbdciEeP59oJu0jY",
@@ -308,7 +311,7 @@ function grabInfo1() {
 //create customer in Hubspot
 function createHsCustomer() {
 
-    var request = require("request");
+//     var request = require("request");
 
     var options = { method: 'POST',
       url: 'https://api.hubapi.com/contacts/v1/contact/',
