@@ -53,8 +53,8 @@ let publicPages = [
 checkUserStatus();
 
 //function to check if user is signed in
-function checkUserStatus(auth) {
-  let user = auth.user;
+function checkUserStatus() {
+  let user = auth;
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
