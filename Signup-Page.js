@@ -348,7 +348,7 @@ async function createUser() {
     validateForm(model, modelErrorMessage);
     console.log("make" + make + "model" + model);
     //create user account
-    if (year.value && make.value && model.value) {
+    if (year.value && (make.value != 'Car Make' && model.value != 'Car Model')) {
         
         //put grabbed info in an array and return it
         let formData = [year.value, make.value, model.value]
