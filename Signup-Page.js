@@ -405,8 +405,4 @@ async function createUser() {
         console.log("quearySnapshot", querySnapshot);
 
       }
-      else {
-            //show error message
-            alert ("Fill out information in forms");
-        }
 }
