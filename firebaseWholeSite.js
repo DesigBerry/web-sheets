@@ -23,6 +23,7 @@ const auth = getAuth(app);
 
 //html ids
 //nav button ids
+let faqLink = document.getElementById('faqLink');
 let notSignedSchedule = document.getElementById('notSignedSchedule');
 let signUp = document.getElementById('signUp');
 let accountPageLink = document.getElementById('accountPageLink');
@@ -79,8 +80,15 @@ auth.onAuthStateChanged( function (user) {
   }
 });
 
+//logout function
 logOut.addEventListener('click', logout);
 function logout() {
   auth.signOut();
   window.location.replace('/');
+}
+
+//faq nav link
+faqLink.addEventListener('click', faqNav);
+function faqNav() {
+  window.location.replace('/#FAQs');
 }
