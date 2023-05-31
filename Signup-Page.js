@@ -113,6 +113,13 @@ for (let i = 0; i < makeOptions.length; i++) {
     signUpCarMake.add(option);
 }
 
+//set model option array (default)
+for (let i = 0; i < emptyOptions.length; i++) {
+    var option = document.createElement("option");
+    option.text = emptyOptions[i];
+    signUpCarModel.add(option);
+}
+
 //disabling the "Car Make" option
 signUpCarMake.options[0].disabled = true;
 signUpCarMake.options[0].value = "";
@@ -120,13 +127,6 @@ signUpCarMake.options[0].value = "";
 //disabling the "Car Model" option
 signUpCarModel.options[0].disabled = true;
 signUpCarModel.options[0].value = "";
-
-//set model option array (default)
-for (let i = 0; i < emptyOptions.length; i++) {
-    var option = document.createElement("option");
-    option.text = emptyOptions[i];
-    signUpCarModel.add(option);
-}
 
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
@@ -137,7 +137,6 @@ signUpButton1.addEventListener('click', function (event) {
 //create user in Firebase
 signUpButton2.addEventListener('click', async function (event) {
     await createUser();
-//     window.location.href = "/subscribe";
 });
 
 //When Car Make selection changes
