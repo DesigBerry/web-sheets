@@ -50,10 +50,10 @@ auth.onAuthStateChanged( function () {
 });
 
 //check if user is signed in when page loads
-async checkUserStatus();
+checkUserStatus();
 
 //function to check if user is signed in
-function checkUserStatus(user) {
+async function checkUserStatus(user) {
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
