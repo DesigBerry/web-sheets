@@ -131,7 +131,7 @@ signUpButton1.addEventListener('click', function (event) {
 //create user in Firebase
 signUpButton2.addEventListener('click', async function (event) {
     await createUser();
-    window.location.href = "/subscribe";
+//     window.location.href = "/subscribe";
 });
 
 //When Car Make selection changes
@@ -403,6 +403,9 @@ async function createUser() {
         const q = query(collection(db, "Clients"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
         console.log("quearySnapshot", querySnapshot);
+        
+        //go to subscribe page
+        window.location.href = "/subscribe";
 
       }
 }
