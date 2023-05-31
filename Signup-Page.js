@@ -131,7 +131,6 @@ signUpCarModel.options[0].value = "";
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
     form1Data = grabInfo1();
-    console.log(form1Data);
 });
 
 //create user in Firebase
@@ -351,7 +350,6 @@ async function createUser() {
     validateForm(year, yearErrorMessage);
     validateForm(make, makeErrorMessage);
     validateForm(model, modelErrorMessage);
-    console.log("make" + make + "model" + model);
     //create user account
     if (year.value && (make.value != 'Car Make' && model.value != 'Car Model')) {
         
@@ -362,8 +360,7 @@ async function createUser() {
         let userInfo = form1Data.concat(formData);
 
         //create account in Firebase
-//         let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
-        console.log("user", user);
+        let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
         //merge customer info w/ Firebase account
         const userRef = doc(db, 'Clients', user.user.uid);
         //create and fill out basic info
@@ -402,7 +399,6 @@ async function createUser() {
             imageFile: imageFile,
         }, { merge: true });
 
-        console.log("submitted");
 
         //grab userId
         const q = query(collection(db, "Clients"), where("userId", "==", userId));
