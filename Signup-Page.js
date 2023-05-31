@@ -346,6 +346,7 @@ async function createUser() {
     validateForm(year, yearErrorMessage);
     validateForm(make, makeErrorMessage);
     validateForm(model, modelErrorMessage);
+    console.log("make" + make + "model" + model);
     //create user account
     if (year.value && make.value && model.value) {
         
@@ -356,8 +357,7 @@ async function createUser() {
         let userInfo = form1Data.concat(formData);
 
         //create account in Firebase
-        const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-        let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+//         let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
         console.log("user", user);
         //merge customer info w/ Firebase account
         const userRef = doc(db, 'Clients', user.user.uid);
