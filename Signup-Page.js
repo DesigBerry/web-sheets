@@ -95,7 +95,13 @@ const carHealthCard = document.getElementById("carHealthCard");
 const carCareCard = document.getElementById("carCareCard");
 const carMonitoringCard = document.getElementById("carMonitoringCard");
 //error messages
+const emailErrorMessage = document.getElementById("emailErrorMessage");
+const nameErrorMessage = document.getElementById("nameErrorMessage");
+const passErrorMessage = document.getElementById("passErrorMessage");
 const passwordErrorMessage = document.getElementById("passwordErrorMessage");
+const numberErrorMessage = document.getElementById("numberErrorMessage");
+const cityErrorMessage = document.getElementById("cityErrorMessage");
+const stateErrorMessage = document.getElementById("stateErrorMessage");
 
 //set make options array (default)
 for (let i = 0; i < makeOptions.length; i++) {
@@ -274,6 +280,20 @@ signUpCarMake.addEventListener("change", (event) => {
     }
 });
 
+//form vadilation function
+function validateForm(x, y) {
+  if (x.value == "") {
+    //show error message & red outline
+    y.style.display = 'block';
+    x.style.border = "#f06868 solid 3px";
+  }
+  else {
+    //hide error message & red outline
+    y.style.display = 'none';
+    x.style.border = "#f06868 solid 0px";
+  }
+}
+
 //grab the information when form is submitted
 function grabInfo1() {
     email = document.getElementById("signUpEmail");
@@ -284,21 +304,23 @@ function grabInfo1() {
     city = document.getElementById("signUpCity");
     state = document.getElementById("signUpState");
 
-    //show next form and hide the button on prev form
-    if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
-        //password and confirm password match
-        if (password.value == passwordConfirm.value) {
-            //display next form
-            signUpForm2.style.display = 'block';
-            buttonsWrap1.style.display = 'none';
-            //hide error message
-            passwordErrorMessage.style.display = 'none';
-        }
-        else {
-            //show error message
-            passwordErrorMessage.style.display = 'block';
-        }
-    }
+//     //show next form and hide the button on prev form
+//     if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
+//         //password and confirm password match
+//         if (password.value == passwordConfirm.value) {
+//             //display next form
+//             signUpForm2.style.display = 'block';
+//             buttonsWrap1.style.display = 'none';
+//             //hide error message
+//             passwordErrorMessage.style.display = 'none';
+//         }
+//         else {
+//             //show error message
+//             passwordErrorMessage.style.display = 'block';
+//         }
+//     }
+    
+    validateForm(email, emailErrorMessage);
 
     //put grabbed info in an array and return it
     let formData = [email.value, name.value, city.value, state.value]
