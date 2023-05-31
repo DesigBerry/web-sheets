@@ -44,16 +44,16 @@ let publicPages = [
   '/signin',
 ];
 
-//check if user is signed in when page loads
-await checkUserStatus();
+//function called whenever authentication state changes
+auth.onAuthStateChanged( function () {
+  checkUserStatus();
+});
 
-// //function called whenever authentication state changes
-// auth.onAuthStateChanged( function () {
-//   checkUserStatus();
-// });
+//check if user is signed in when page loads
+async checkUserStatus();
 
 //function to check if user is signed in
-async function checkUserStatus(user) {
+function checkUserStatus(user) {
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
