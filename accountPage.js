@@ -48,6 +48,7 @@ let priceId;
 //html Ids
 //buttons
 const userEmail = document.getElementById("userEmail");
+const userName = document.getElementById("userName");
 const userNumber = document.getElementById("userNumber");
 const userCity = document.getElementById("userCity");
 const userState = document.getElementById("userState");
@@ -76,6 +77,7 @@ auth.onAuthStateChanged(async function (user) {
       subPackage = docData["subscription"];
       
       userEmail.value = email;
+      userName.value = name;
       userNumber.value = number;
       userCity.value = city;
       userState.value = state;
