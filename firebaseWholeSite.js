@@ -44,7 +44,7 @@ let publicPages = [
   '/signin',
 ];
 
-// //function called whenever authentication state changes
+//function called whenever authentication state changes
 // auth.onAuthStateChanged( function () {
 //   checkUserStatus();
 // });
