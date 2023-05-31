@@ -32,6 +32,9 @@ const auth = getAuth(app);
 const signInEmail = document.getElementById("signInEmail");
 const signInPassword = document.getElementById("signInPassword");
 const signInButton = document.getElementById("signInButton");
+const signInButtonLoading = document.getElementById("signInButtonLoading");
+//error message
+const signInError = document.getElementById("errorMessage");
 
 //sign in button
 signInButton.addEventListener('click', function() {
@@ -45,8 +48,8 @@ signInButton.addEventListener('click', function() {
 
 //execute login with Firebase
 function login(auth) {
-  signInButton.style.display = '';
-//   signInError.style.display = 'none';
+  signInButtonLoading.style.display = 'block';
+  signInError.style.display = 'none';
   var email = signInEmail.value;
   var password = signInPassword.value;
 
@@ -60,18 +63,18 @@ function login(auth) {
       var errorMessage = error.message;
       console.log('Error code hi: ' + errorCode);
       console.log('Error message: ' + errorMessage);
-      signInButton.style.display = 'block';
-//       signInError.innerText = errorMessage;
-//       signInError.style.display = 'block';
+      signInButtonLoading.style.display = 'none';
+      signInError.innerText = errorMessage;
+      signInError.style.display = 'block';
     });
 }
 
 
   // Get the input field
-var passwordInput = document.getElementById("signInPassword");
+var signInPassword = document.getElementById("signInPassword");
 
 // Execute a function when the user presses a key on the keyboard
-passwordInput.addEventListener("keypress", function(event) {
+signInPassword.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
   if (event.key === "Enter") {
     // Trigger the button element with a click
