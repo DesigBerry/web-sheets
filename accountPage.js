@@ -75,9 +75,16 @@ auth.onAuthStateChanged(async function (user) {
       carModel = carData["carModel"];
       subPackage = docData["subscription"];
       
-      userEmail.value = email
-    } else {
+      userEmail.value = email;
+      userNumber.value = number;
+      userCity.value = city;
+      userState.value = state;
+      userCarYear.value = carYear;
+      userCarMake.value = carMake;
+      userCarModel.value = carModel;
+    } 
+    else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
-   }
+    }
 });
