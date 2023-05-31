@@ -94,6 +94,8 @@ const carMonitoringPopUp = document.getElementById("carMonitoringPopUp");
 const carHealthCard = document.getElementById("carHealthCard");
 const carCareCard = document.getElementById("carCareCard");
 const carMonitoringCard = document.getElementById("carMonitoringCard");
+//error messages
+const passwordErrorMessage = document.getElementById("passwordErrorMessage");
 
 //set make options array (default)
 for (let i = 0; i < makeOptions.length; i++) {
@@ -131,7 +133,6 @@ signUpCarMake.addEventListener("change", (event) => {
     for (let i = signUpCarModel.length; i > 0; i--) {
         signUpCarModel.remove(signUpCarModel[i]);
     }
-
 
 
     //switch car models when make is changed
@@ -288,14 +289,14 @@ function grabInfo1() {
         //password and confirm password match
         if (password.value == passwordConfirm.value) {
             //display next form
-            signUpForm2.style.opacity = '100%';
-            buttonsWrap1.style.opacity = '0%';
             signUpForm2.style.display = 'block';
             buttonsWrap1.style.display = 'none';
+            //hide error message
+            passwordErrorMessage.style.display = 'none';
         }
         else {
             //show error message
-            alert ("Passwords do not match");
+            passwordErrorMessage.style.display = 'block';
         }
     }
 
