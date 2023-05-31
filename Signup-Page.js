@@ -102,6 +102,9 @@ const passwordErrorMessage = document.getElementById("passwordErrorMessage");
 const numberErrorMessage = document.getElementById("numberErrorMessage");
 const cityErrorMessage = document.getElementById("cityErrorMessage");
 const stateErrorMessage = document.getElementById("stateErrorMessage");
+const yearErrorMessage = document.getElementById("yearErrorMessage");
+const makeErrorMessage = document.getElementById("makeErrorMessage");
+const modelErrorMessage = document.getElementById("modelErrorMessage");
 
 //set make options array (default)
 for (let i = 0; i < makeOptions.length; i++) {
@@ -329,7 +332,7 @@ function grabInfo1() {
     }
 
     //put grabbed info in an array and return it
-    let formData = [email.value, name.value, city.value, state.value]
+    let formData = [email.value, name.value, number.value, city.value, state.value]
     return formData;
 }
 
@@ -339,6 +342,10 @@ async function createUser() {
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
 
+    //validate that forms are filled out
+    validateForm(year, yearErrorMessage);
+    validateForm(make, makeErrorMessage);
+    validateForm(model, modelErrorMessage);
     //create user account
     if (year.value && make.value && model.value) {
         
