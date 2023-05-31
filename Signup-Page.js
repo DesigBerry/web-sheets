@@ -312,7 +312,10 @@ function grabInfo1() {
     validateForm(number, numberErrorMessage);
     validateForm(city, cityErrorMessage);
     validateForm(state, stateErrorMessage);
-            if (password.value == passwordConfirm.value) {
+    //show next form and hide the button on prev form and make sure all fields are filled out
+    if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
+        //password and confirm password match
+        if (password.value == passwordConfirm.value) {
             //display next form
             signUpForm2.style.display = 'block';
             buttonsWrap1.style.display = 'none';
@@ -323,6 +326,7 @@ function grabInfo1() {
             //show error message
             passwordErrorMessage.style.display = 'block';
         }
+    }
 
     //put grabbed info in an array and return it
     let formData = [email.value, name.value, city.value, state.value]
