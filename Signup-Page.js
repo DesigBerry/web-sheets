@@ -303,24 +303,26 @@ function grabInfo1() {
     number = document.getElementById("signUpNumber");
     city = document.getElementById("signUpCity");
     state = document.getElementById("signUpState");
-
-//     //show next form and hide the button on prev form
-//     if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
-//         //password and confirm password match
-//         if (password.value == passwordConfirm.value) {
-//             //display next form
-//             signUpForm2.style.display = 'block';
-//             buttonsWrap1.style.display = 'none';
-//             //hide error message
-//             passwordErrorMessage.style.display = 'none';
-//         }
-//         else {
-//             //show error message
-//             passwordErrorMessage.style.display = 'block';
-//         }
-//     }
     
+    //validate that forms are filled out
     validateForm(email, emailErrorMessage);
+    validateForm(name, nameErrorMessage);
+    validateForm(password, passErrorMessage);
+    validateForm(passwordConfirm, passwordErrorMessage);
+    validateForm(number, numberErrorMessage);
+    validateForm(city, cityErrorMessage);
+    validateForm(state, stateErrorMessage);
+            if (password.value == passwordConfirm.value) {
+            //display next form
+            signUpForm2.style.display = 'block';
+            buttonsWrap1.style.display = 'none';
+            //hide error message
+            passwordErrorMessage.style.display = 'none';
+        }
+        else {
+            //show error message
+            passwordErrorMessage.style.display = 'block';
+        }
 
     //put grabbed info in an array and return it
     let formData = [email.value, name.value, city.value, state.value]
