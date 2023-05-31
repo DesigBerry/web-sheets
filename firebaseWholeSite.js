@@ -63,7 +63,7 @@ auth.onAuthStateChanged( function (user) {
   } else {
       // User is signed out.
       if (privatePages.includes(currentPath)) {
-          window.location.replace('/');
+          window.location.replace('/signup1');
       } else {
           console.log('No user is logged in');
 //           loadingScreen.style.display = 'none';
