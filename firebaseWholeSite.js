@@ -21,6 +21,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+//variables
+let currentPath = window.location.pathname;
+
 //html ids
 //nav button ids
 let faqLink = document.getElementById('faqLink');
@@ -32,20 +35,24 @@ let logInButton = document.getElementById('logInButton');
 let scheduleAppointmentButton = document.getElementById('scheduleAppointmentButton');
 
 //pages hidden when user ISN'T signed in
-var privatePages = [
+let privatePages = [
  '/myaccount',
   '/scheduleservice'
 ];
 
 //pages hidden when user IS signed in
-var publicPages = [
+let publicPages = [
   '/signup1',
   '/signin',
 ];
 
-//function called whenever something happens with "auth"
+//function called whenever authentication state changes
 auth.onAuthStateChanged( function (user) {
-  var currentPath = window.location.pathname;
+  checkUserStatus();
+});
+
+//function to check if user is signed in
+function checkUserStatus() {
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
@@ -54,7 +61,7 @@ auth.onAuthStateChanged( function (user) {
           console.log('User is logged in!');
           console.log('Email: ' + user.email);
           console.log('UID: ' + user.uid);
-//           loadingScreen.style.display = 'none';
+          loadingScreen.style.display = 'none';
           // New Home links
           notSignedSchedule.style.display = 'none';
           signUp.style.display = 'none';
@@ -67,7 +74,7 @@ auth.onAuthStateChanged( function (user) {
           window.location.replace('/signup1');
       } else {
           console.log('No user is logged in');
-//           loadingScreen.style.display = 'none';
+          loadingScreen.style.display = 'none';
           // New home links
           accountPageLink.style.display = 'none';
           logOut.style.display = 'none';
@@ -78,7 +85,7 @@ auth.onAuthStateChanged( function (user) {
 
       }
   }
-});
+}
 
 //logout function
 logOut.addEventListener('click', logout);
