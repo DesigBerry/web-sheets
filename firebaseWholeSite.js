@@ -93,7 +93,7 @@ function checkUserStatus() {
 logOut.addEventListener('click', logout);
 function logout() {
   auth.signOut();
-  checkUserStatus();
+  window.location.replace('/');
 }
 
 //faq nav link
