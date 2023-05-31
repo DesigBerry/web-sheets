@@ -48,7 +48,7 @@ let priceId;
 //html Ids
 //buttons
 const userEmail = document.getElementById("userEmail");
-const userEmail = document.getElementById("userEmail");
+const userNumber = document.getElementById("userNumber");
 const userCity = document.getElementById("userCity");
 const userState = document.getElementById("userState");
 const userCarYear = document.getElementById("userCarYear");
