@@ -313,7 +313,7 @@ function grabInfo1() {
     validateForm(city, cityErrorMessage);
     validateForm(state, stateErrorMessage);
     //show next form and hide the button on prev form and make sure all fields are filled out
-    if (email.value && name.value && password.value && passwordConfirm.value && city.value && state.value) {
+    if (email.value && name.value && password.value && passwordConfirm.value && number.value && city.value && state.value) {
         //password and confirm password match
         if (password.value == passwordConfirm.value) {
             //display next form
