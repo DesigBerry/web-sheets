@@ -114,6 +114,7 @@ for (let i = 0; i < emptyOptions.length; i++) {
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
     form1Data = grabInfo1();
+    createHsCustomer();
     console.log(form1Data);
 });
 
@@ -304,74 +305,106 @@ function grabInfo1() {
     return formData;
 }
 
-//grab the information when form is submitted
+//create customer in Hubspot
+function createHsCustomer() {
+
+    var request = require("request");
+
+    var options = { method: 'POST',
+      url: 'https://api.hubapi.com/contacts/v1/contact/',
+      qs: { hapikey: 'demo' },
+      headers: 
+       { 
+         'Authorization': `Bearer pat-na1-ec59815b-28e3-4afc-8956-e29c98101090`,
+         'Content-Type': 'application/json' },
+      body: 
+       { properties: 
+          [ { property: 'email', value: 'testingapis@hubspot.com' },
+            { property: 'firstname', value: 'test' },
+            { property: 'lastname', value: 'testerson' },
+            { property: 'website', value: 'http://hubspot.com' },
+            { property: 'company', value: 'HubSpot' },
+            { property: 'phone', value: '555-122-2323' },
+            { property: 'address', value: '25 First Street' },
+            { property: 'city', value: 'Cambridge' },
+            { property: 'state', value: 'MA' },
+            { property: 'zip', value: '02139' } ] },
+      json: true };
+
+    request(options, function (error, response, body) {
+      if (error) throw new Error(error);
+
+      console.log(body);
+    });
+}
+
+//grab the information & create account in Firebase
 async function createUser() {
     year = document.getElementById("signUpCarYear");
     make = document.getElementById("signUpCarMake");
     model = document.getElementById("signUpCarModel");
 
-    //show next form and hide the button on prev form
-    if (year && make && model) {
-        signUpPackages.style.opacity = '100%';
-        signUpStripe.style.opacity = '100%';
-        buttonsWrap2.style.opacity = '0%';
-        signUpPackages.style.display = 'block';
-        signUpStripe.style.display = 'block';
-        buttonsWrap2.style.display = 'none';
-        console.log("visual on");
-    }
+    //create user account
+    if (year.value && make.value && model.value) {
+        
+        //put grabbed info in an array and return it
+        let formData = [year.value, make.value, model.value]
 
-    //put grabbed info in an array and return it
-    let formData = [year.value, make.value, model.value]
+        //combine first and second array of user data in forms
+        let userInfo = form1Data.concat(formData);
 
-    //combine first and second array of user data in forms
-    let userInfo = form1Data.concat(formData);
+        //create account in Firebase
+        const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
+        let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
+        console.log("user", user);
+        //merge customer info w/ Firebase account
+        const userRef = doc(db, 'Clients', user.user.uid);
+        //create and fill out basic info
+        let userId = user.user.uid;
+        const termAgree = false;
+        const subscription = "None";
+        const bioId = false;
+        const image = "";
+        const imageFile = "";
+        const carData = {
+            make: make.value,
+            model: model.value,
+            carYear: year.value,
+            air: { airGrade: "A", airValue: 100 },
+            tires: { tireGrade: "A", tireValue: 100 },
+            cabin: { cabinGrade: "A", cabinValue: 100 },
+            brakes: { brakeGrade: "A", brakeValue: 100 },
+            rotor: { rotorGrade: "A", rotorValue: 100 },
+            oil: { oilGrade: "A", oilValue: 100 }
+        };
+        console.log("db", db);
+        //fill out form info
+        setDoc(userRef, { 
+            email: capitalizedEmail,
+            firstName: name.value,
+            lastName: "",
+            phoneNumber: number.value,
+            city: city.value,
+            state: state.value,
+            userId: userId,
+            termAgree: termAgree,
+            subscription: subscription,
+            carData: carData,
+            bioId: bioId,
+            image: image,
+            imageFile: imageFile,
+        }, { merge: true });
 
-    //create account in Firebase
-    const capitalizedEmail = email.value.charAt(0).toUpperCase() + email.value.slice(1);
-    let user = await createUserWithEmailAndPassword(auth, email.value, password.value);
-    console.log("user", user);
-    //merge customer info w/ Firebase account
-    const userRef = doc(db, 'Clients', user.user.uid);
+        console.log("submitted");
 
-    let userId = user.user.uid;
-    const termAgree = false;
-    const subscription = "None";
-    const bioId = false;
-    const image = "";
-    const imageFile = "";
-    const carData = {
-        make: make.value,
-        model: model.value,
-        carYear: year.value,
-        air: { airGrade: "A", airValue: 100 },
-        tires: { tireGrade: "A", tireValue: 100 },
-        cabin: { cabinGrade: "A", cabinValue: 100 },
-        brakes: { brakeGrade: "A", brakeValue: 100 },
-        rotor: { rotorGrade: "A", rotorValue: 100 },
-        oil: { oilGrade: "A", oilValue: 100 }
-    };
-    console.log("db", db);
-    setDoc(userRef, { 
-        email: capitalizedEmail,
-        firstName: name.value,
-        lastName: "",
-        phoneNumber: number.value,
-        city: city.value,
-        state: state.value,
-        userId: userId,
-        termAgree: termAgree,
-        subscription: subscription,
-        carData: carData,
-        bioId: bioId,
-        image: image,
-        imageFile: imageFile,
-    }, { merge: true });
-    
-    console.log("submitted");
-    
-    const q = query(collection(db, "Clients"), where("userId", "==", userId));
-    const querySnapshot = await getDocs(q);
-    console.log("quearySnapshot", querySnapshot);
-    
+        //grab userId
+        const q = query(collection(db, "Clients"), where("userId", "==", userId));
+        const querySnapshot = await getDocs(q);
+        console.log("quearySnapshot", querySnapshot);
+
+      }
+      else {
+            //show error message
+            alert ("Fill out information in forms");
+        }
 }
