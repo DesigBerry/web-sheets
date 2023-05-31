@@ -69,10 +69,6 @@ function login(auth) {
     });
 }
 
-
-  // Get the input field
-var signInPassword = document.getElementById("signInPassword");
-
 // Execute a function when the user presses a key on the keyboard
 signInPassword.addEventListener("keypress", function(event) {
   // If the user presses the "Enter" key on the keyboard
