@@ -113,7 +113,13 @@ for (let i = 0; i < makeOptions.length; i++) {
     signUpCarMake.add(option);
 }
 
+//disabling the "Car Make" option
 signUpCarMake.options[0].disabled = true;
+signUpCarMake.options[0].value = "";
+
+//disabling the "Car Model" option
+signUpCarModel.options[0].disabled = true;
+signUpCarModel.options[0].value = "";
 
 //set model option array (default)
 for (let i = 0; i < emptyOptions.length; i++) {
