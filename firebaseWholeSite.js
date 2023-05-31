@@ -54,7 +54,7 @@ checkUserStatus();
 
 //function to check if user is signed in
 function checkUserStatus(auth) {
-  let user = auth.user.user;
+  let user = auth.user;
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
