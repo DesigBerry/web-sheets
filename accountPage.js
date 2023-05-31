@@ -77,7 +77,7 @@ auth.onAuthStateChanged(async function (user) {
       subPackage = docData["subscription"];
       
       userEmail.value = email;
-      userName.value = name;
+      userName.innerText = name;
       userNumber.value = number;
       userCity.value = city;
       userState.value = state;
