@@ -339,15 +339,15 @@ function grabInfo1() {
     let formData = [email.value, name.value, number.value, city.value, state.value];
     
 
-    const fetchPaymentSheetParams = async () => {
-        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data=${formData}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-        return response;
-      }
+//     const fetchPaymentSheetParams = async () => {
+//         const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data=${formData}`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         });
+//         return response;
+//       }
         
     return formData;
 }
