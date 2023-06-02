@@ -83,27 +83,29 @@ auth.onAuthStateChanged(async function (user) {
       subPackage = docData["subscription"];
       
       userEmail.value = email;
-        userEmail.disabled = cantEdit;
       userName.innerText = name;
-        userName.disabled = cantEdit;
       userNumber.value = number;
-        userNumber.disabled = cantEdit;
       userCity.value = city;
-        userCity.disabled = cantEdit;
       userState.value = state;
-        userState.disabled = cantEdit;
       userCarYear.value = carYear;
-        userCarYear.disabled = cantEdit;
       userCarMake.value = carMake;
-        userCarMake.disabled = cantEdit;
       userCarModel.value = carModel;
-        userCarModel.disabled = cantEdit;
     } 
     else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
 });
+
+//form field edit on/off settings
+userEmail.disabled = cantEdit;
+userName.disabled = cantEdit;
+userNumber.disabled = cantEdit;
+userCity.disabled = cantEdit;
+userState.disabled = cantEdit;
+userCarYear.disabled = cantEdit;
+userCarMake.disabled = cantEdit;
+userCarModel.disabled = cantEdit;
 
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
