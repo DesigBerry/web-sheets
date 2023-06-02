@@ -1,7 +1,7 @@
 //Firebase startup/get its shit
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateEmail } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
 import { getFirestore, doc, setDoc, collection, getDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 //Firebase API
@@ -144,14 +144,14 @@ accountInfoSave.addEventListener('click', async function(event) {
     
     //update firebase
     await updateDoc(doc(db, "Clients", userId), { email: userEmail.value, phoneNumber: userNumber.value  });
-//             const credential = EmailAuthProvider.credential(
-//                 auth.currentUser.email,
-//                 password
-//             )
-//             const result = await reauthenticateWithCredential(
-//                 auth.currentUser,
-//                 credential
-//             )
+            const credential = EmailAuthProvider.credential(
+                auth.currentUser.email,
+                password
+            )
+            const result = await reauthenticateWithCredential(
+                auth.currentUser,
+                credential
+            )
 
             // TODO(you): prompt the user to re-provide their sign-in credentials
             // const credential = promptForCredentials();
