@@ -109,7 +109,16 @@ userCarModel.disabled = cantEdit;
 
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
-    cantEdit = !cantEdit;
+    //form field edit on/off settings
+    userEmail.disabled = !cantEdit;
+    userName.disabled = false;
+    userNumber.disabled = cantEdit;
+    userCity.disabled = cantEdit;
+    userState.disabled = cantEdit;
+    userCarYear.disabled = cantEdit;
+    userCarMake.disabled = cantEdit;
+    userCarModel.disabled = cantEdit;
+    
 });
 
 //turn off the ability to type in form field
