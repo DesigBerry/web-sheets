@@ -62,9 +62,13 @@ const userCarYear = document.getElementById("userCarYear");
 const userCarMake = document.getElementById("userCarMake");
 const userCarModel = document.getElementById("userCarModel");
 
+//user id variable
+let userId;
+
 //get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
-    const docRef = doc(db, "Clients", user.uid);
+    userId = user.uid;
+    const docRef = doc(db, "Clients", userId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
       console.log("Document data:", docSnap.data());
@@ -124,7 +128,7 @@ accountInfoEditInfo.addEventListener('click', function(event) {
 });
 
 //turn off the ability to type in form field
-accountInfoSave.addEventListener('click', function(event) {
+accountInfoSave.addEventListener('click', async function(event) {
     cantEdit = true;
     //
     userEmail.disabled = cantEdit;
@@ -137,4 +141,29 @@ accountInfoSave.addEventListener('click', function(event) {
     //hide "save" button & show "edit info"
     accountInfoEditInfo.style.display = "block";
     accountInfoSave.style.display = "none";
+    
+    //update firebase
+    await updateDoc(doc(db, "Clients", userId), { email: userEmail.value, phoneNumber: userNumber.value  });
+            const credential = EmailAuthProvider.credential(
+                auth.currentUser.email,
+                password
+            )
+            const result = await reauthenticateWithCredential(
+                auth.currentUser,
+                credential
+            )
+
+            // TODO(you): prompt the user to re-provide their sign-in credentials
+            // const credential = promptForCredentials();
+
+            updateEmail(auth.currentUser, userEmail.value).then(() => {
+                // Email updated!
+                // ...
+            }).catch((error) => {
+                // An error occurred
+                // ...
+                console.log("The current user: '", auth.currentUser);
+                console.log("error fool, ", error)
+            });
+    
 });
