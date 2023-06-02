@@ -72,8 +72,8 @@ auth.onAuthStateChanged(async function (user) {
       city = docData["city"];
       state = docData["state"];
       carYear = carData["carYear"];
-      carMake = carData.carMake;
-      carModel = carData["carModel"];
+      carMake = carData["make"];
+      carModel = carData["model"];
       subPackage = docData["subscription"];
       
       userEmail.value = email;
