@@ -99,7 +99,6 @@ auth.onAuthStateChanged(async function (user) {
 
 //form field edit on/off settings
 userEmail.disabled = cantEdit;
-userName.disabled = cantEdit;
 userNumber.disabled = cantEdit;
 userCity.disabled = cantEdit;
 userState.disabled = cantEdit;
@@ -109,19 +108,29 @@ userCarModel.disabled = cantEdit;
 
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
-    //form field edit on/off settings
     userEmail.disabled = !cantEdit;
-    userName.disabled = false;
-    userNumber.disabled = cantEdit;
-    userCity.disabled = cantEdit;
-    userState.disabled = cantEdit;
-    userCarYear.disabled = cantEdit;
-    userCarMake.disabled = cantEdit;
-    userCarModel.disabled = cantEdit;
+    userNumber.disabled = !cantEdit;
+    userCity.disabled = !cantEdit;
+    userState.disabled = !cantEdit;
+    userCarYear.disabled = !cantEdit;
+    userCarMake.disabled = !cantEdit;
+    userCarModel.disabled = !cantEdit;
+    //hide "edit info" button & show "save"
+    accountInfoEditInfo.style.display = "none";
+    accountInfoSave.style.display = "block";
     
 });
 
 //turn off the ability to type in form field
 accountInfoSave.addEventListener('click', function(event) {
-    cantEdit = !cantEdit;
+    userEmail.disabled = !cantEdit;
+    userNumber.disabled = !cantEdit;
+    userCity.disabled = !cantEdit;
+    userState.disabled = !cantEdit;
+    userCarYear.disabled = !cantEdit;
+    userCarMake.disabled = !cantEdit;
+    userCarModel.disabled = !cantEdit;
+    //hide "save" button & show "edit info"
+    accountInfoEditInfo.style.display = "block";
+    accountInfoSave.style.display = "none";
 });
