@@ -409,4 +409,5 @@ async function createUser() {
         window.location.href = "/subscribe";
 
       }
+  }
 }
