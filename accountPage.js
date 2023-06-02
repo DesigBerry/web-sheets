@@ -45,8 +45,14 @@ let subPackage;
 let docData;
 let priceId;
 
+//edit info variable
+let cantEdit = true;
+
 //html Ids
 //buttons
+const accountInfoEditInfo = document.getElementById("accountInfoEditInfo");
+const accountInfoSave = document.getElementById("accountInfoSave");
+//form fields
 const userEmail = document.getElementById("userEmail");
 const userName = document.getElementById("userName");
 const userNumber = document.getElementById("userNumber");
@@ -77,17 +83,34 @@ auth.onAuthStateChanged(async function (user) {
       subPackage = docData["subscription"];
       
       userEmail.value = email;
-        userEmail.disabled = true;
+        userEmail.disabled = cantEdit;
       userName.innerText = name;
+        userName.disabled = cantEdit;
       userNumber.value = number;
+        userNumber.disabled = cantEdit;
       userCity.value = city;
+        userCity.disabled = cantEdit;
       userState.value = state;
+        userState.disabled = cantEdit;
       userCarYear.value = carYear;
+        userCarYear.disabled = cantEdit;
       userCarMake.value = carMake;
+        userCarMake.disabled = cantEdit;
       userCarModel.value = carModel;
+        userCarModel.disabled = cantEdit;
     } 
     else {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
+});
+
+//turn on the ability to type in form field
+accountInfoEditInfo.addEventListener('click', function(event) {
+    cantEdit = !cantEdit;
+});
+
+//turn off the ability to type in form field
+accountInfoSave.addEventListener('click', function(event) {
+    cantEdit = !cantEdit;
 });
