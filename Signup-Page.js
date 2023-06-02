@@ -346,6 +346,7 @@ function grabInfo1() {
                 'Content-Type': 'application/json',
             },
         });
+        return response;
       }
         
     return formData;
