@@ -144,14 +144,14 @@ accountInfoSave.addEventListener('click', async function(event) {
     
     //update firebase
     await updateDoc(doc(db, "Clients", userId), { email: userEmail.value, phoneNumber: userNumber.value  });
-            const credential = EmailAuthProvider.credential(
-                auth.currentUser.email,
-                password
-            )
-            const result = await reauthenticateWithCredential(
-                auth.currentUser,
-                credential
-            )
+//             const credential = EmailAuthProvider.credential(
+//                 auth.currentUser.email,
+//                 password
+//             )
+//             const result = await reauthenticateWithCredential(
+//                 auth.currentUser,
+//                 credential
+//             )
 
             // TODO(you): prompt the user to re-provide their sign-in credentials
             // const credential = promptForCredentials();
