@@ -109,6 +109,14 @@ userCarModel.disabled = cantEdit;
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
     cantEdit = false;
+    //
+    userEmail.disabled = cantEdit;
+    userNumber.disabled = cantEdit;
+    userCity.disabled = cantEdit;
+    userState.disabled = cantEdit;
+    userCarYear.disabled = cantEdit;
+    userCarMake.disabled = cantEdit;
+    userCarModel.disabled = cantEdit;
     //hide "edit info" button & show "save"
     accountInfoEditInfo.style.display = "none";
     accountInfoSave.style.display = "block";
@@ -118,6 +126,14 @@ accountInfoEditInfo.addEventListener('click', function(event) {
 //turn off the ability to type in form field
 accountInfoSave.addEventListener('click', function(event) {
     cantEdit = true;
+    //
+    userEmail.disabled = cantEdit;
+    userNumber.disabled = cantEdit;
+    userCity.disabled = cantEdit;
+    userState.disabled = cantEdit;
+    userCarYear.disabled = cantEdit;
+    userCarMake.disabled = cantEdit;
+    userCarModel.disabled = cantEdit;
     //hide "save" button & show "edit info"
     accountInfoEditInfo.style.display = "block";
     accountInfoSave.style.display = "none";
