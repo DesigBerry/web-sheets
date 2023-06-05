@@ -337,15 +337,17 @@ async function grabInfo1() {
 
     //put grabbed info in an array and return it
     let formData = [email.value, name.value, number.value, city.value, state.value];
-//     let formMessage = '{"email":email.value,"firstname":name.value,"number":number.value,"city":city.value,"state": state.value}'; 
+    let formMessage = {"email":email.value,"firstname":name.value,"number":number.value,"city":city.value,"state": state.value}; 
+    console.log("Form message: ", formMessage);
+    console.log("Form Message to string: ", formMessage.toString());
     
     
-        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data={%22firstname%22:%22kliff%22,%22email%22:%22kliff@gmail.com%22,%22number%22:%221234567%22,%22city%22:%22kliffville%22,%22state%22:%22OH"}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
+//         const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data=${formMessage}`, {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//         });
     
     return formData;
 }
