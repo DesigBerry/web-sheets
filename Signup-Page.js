@@ -302,7 +302,7 @@ function validateForm(x, y) {
 }
 
 //grab the information when form is submitted
-function grabInfo1() {
+async function grabInfo1() {
     email = document.getElementById("signUpEmail");
     name = document.getElementById("signUpName");
     password = document.getElementById("signUpPassword");
