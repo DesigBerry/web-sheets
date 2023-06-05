@@ -341,7 +341,7 @@ async function grabInfo1() {
     console.log("Form message: ", formMessage);
     
     
-        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data='{"firstname":${name.value},"email":${email.value}, "number":${number.value}, "city":${city.value}, "state":${state.value} }'`, {
+        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?data='{"firstname":${name.value},"email":${email.value},"number":${number.value},"city":${city.value},"state":${state.value}}'`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
