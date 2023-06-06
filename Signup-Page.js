@@ -130,8 +130,7 @@ signUpCarModel.options[0].value = "";
 
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
-    form1Data = grabInfo1();
-    console.log("form1Data", form1Data);
+    form1Data = grabInfo1().then((data)=>{});
 });
 
 //create user in Firebase
@@ -336,9 +335,6 @@ async function grabInfo1() {
         }
     }
 
-    //put grabbed info in an array and return it
-    let formData = [email.value, name.value, number.value, city.value, state.value];
-    
     //create a customer in HubSpot
     const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?email=${email.value}&firstname=${name.value}&number=${number.value}&city=${city.value}&state=${state.value}`, {
         method: 'POST',
@@ -346,6 +342,9 @@ async function grabInfo1() {
             'Content-Type': 'application/json',
         },
     });
+    
+    //put grabbed info in an array and return it
+    let formData = [email.value, name.value, number.value, city.value, state.value];
     
     return formData;
 }
