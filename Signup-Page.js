@@ -413,7 +413,6 @@ async function createUser() {
         //grab userId
         const q = query(collection(db, "Clients"), where("userId", "==", userId));
         const querySnapshot = await getDocs(q);
-        console.log("quearySnapshot", querySnapshot);
         
         //set variable for Hubspot flag
         let first = "first";
@@ -427,7 +426,7 @@ async function createUser() {
         });
         
         //go to subscribe page
-//         window.location.href = "/subscribe";
+        window.location.href = "/subscribe";
 
       }
 }
