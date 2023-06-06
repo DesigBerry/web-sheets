@@ -2,7 +2,7 @@
 import { initializeApp, getApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, updateEmail, EmailAuthProvider, reauthenticateWithCredential } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, collection, getDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc, collection, getDoc, getDocs, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 //Firebase API
 const firebaseConfig = {
@@ -71,7 +71,6 @@ auth.onAuthStateChanged(async function (user) {
     const docRef = doc(db, "Clients", userId);
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       docData = docSnap.data();
       let carData = docData["carData"];
       
@@ -99,6 +98,14 @@ auth.onAuthStateChanged(async function (user) {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
+    
+    //get subscription info
+        // Query a reference to a subcollection
+        const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+        querySnapshotSub.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      console.log(doc.id, " => ", doc.data());
+    });
 });
 
 //form field edit on/off settings
