@@ -42,9 +42,11 @@ let carYear;
 let carMake;
 let carModel;
 let subPackage;
+//variables to get user info
 let docData;
 let docDataSub;
 let priceId;
+let docDataSubId;
 
 //edit info variable
 let cantEdit = true;
@@ -99,19 +101,29 @@ auth.onAuthStateChanged(async function (user) {
       console.log("No such document!");
     }
     
-    //get subscription info
-    const docRefSub = doc(db, "Clients", userId, "subscriptions");
-    const docRefSubSnap = await getDoc(docRefSub);
-    //if the user has a subscription
-    if(docRefSubSnap.exists()) {
-        //grab the user's subscription's name
-        docDataSub = doc.data();
-        subPackage = docDataSub.items[0].price.product.name;
-        console.log("it exists");
-    //if the user doesn't have a subscription
-    } else {
-        console.log("it doesn't exist")
-    };
+    //grab subscription id
+    const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+      querySnapshotSub.forEach((doc) => {
+      //grab the user's subscription's name
+      docDataSub = doc.data();
+      subPackage = docDataSub.items[0].price.product.name;
+      docDataSubId = doc.id;
+      console.log(docDataSubId);
+    });
+    
+//     //get subscription info
+//     const docRefSub = doc(db, "Clients", userId, "subscriptions");
+//     const docRefSubSnap = await getDoc(docRefSub);
+//     //if the user has a subscription
+//     if(docRefSubSnap.exists()) {
+//         //grab the user's subscription's name
+//         docDataSub = doc.data();
+//         subPackage = docDataSub.items[0].price.product.name;
+//         console.log("it exists");
+//     //if the user doesn't have a subscription
+//     } else {
+//         console.log("it doesn't exist")
+//     };
     
 });
 
