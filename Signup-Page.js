@@ -130,7 +130,7 @@ signUpCarModel.options[0].value = "";
 
 //Grabbing information on the first form after clicking the button
 signUpButton1.addEventListener('click', function (event) {
-    form1Data = grabInfo1().then((data)=>{});
+    grabInfo1().then((data)=>{console.log(data);});
 });
 
 //create user in Firebase
