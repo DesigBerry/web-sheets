@@ -71,9 +71,6 @@ auth.onAuthStateChanged(async function (user) {
     userId = user.uid;
     const docRef = doc(db, "Clients", userId);
     const docSnap = await getDoc(docRef);
-    
-    console.log(docRef);
-    
     if (docSnap.exists()) {
       docData = docSnap.data();
       let carData = docData["carData"];
@@ -102,16 +99,20 @@ auth.onAuthStateChanged(async function (user) {
       console.log("No such document!");
     }
     
-//     if() {
-        //get subscription info
-          // Query the subscription doc in the user info
-          const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-          querySnapshotSub.forEach((doc) => {
-          //grab the user's subscription's name
-          docDataSub = doc.data();
-          subPackage = docDataSub.items[0].price.product.name;
-        });
-//     };
+    //get subscription info
+    // Query the subscription doc in the user info
+    const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+    if(querySnapshotSub.exitsts()) {
+        querySnapshotSub.forEach((doc) => {
+        //grab the user's subscription's name
+        docDataSub = doc.data();
+        subPackage = docDataSub.items[0].price.product.name;
+        console.log("it exists");
+    });
+    } else {
+        console.log("it doesn't exist")
+    };
+    
 });
 
 //form field edit on/off settings
