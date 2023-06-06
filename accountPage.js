@@ -99,17 +99,18 @@ auth.onAuthStateChanged(async function (user) {
       console.log("No such document!");
     }
     
-    //get subscription info
-      // Query the subscription doc in the user info
-      const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-      querySnapshotSub.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
-      //grab the user's subscription's name
-      docDataSub = doc.data();
-      subPackage = docDataSub.items[0].price.product.name;
-      console.log(subPackage);
-    });
+    console.log(docData);
+    
+//     if() {
+        //get subscription info
+          // Query the subscription doc in the user info
+          const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+          querySnapshotSub.forEach((doc) => {
+          //grab the user's subscription's name
+          docDataSub = doc.data();
+          subPackage = docDataSub.items[0].price.product.name;
+        });
+//     };
 });
 
 //form field edit on/off settings
