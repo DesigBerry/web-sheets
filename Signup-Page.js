@@ -385,17 +385,17 @@ async function createUser() {
             make: make.value,
             model: model.value,
             carYear: year.value,
-            air: { airGrade: "A", airValue: 100 },
-            tires: { tireGrade: "A", tireValue: 100 },
-            cabin: { cabinGrade: "A", cabinValue: 100 },
-            brakes: { brakeGrade: "A", brakeValue: 100 },
-            rotor: { rotorGrade: "A", rotorValue: 100 },
-            oil: { oilGrade: "A", oilValue: 100 }
+            air: { airGrade: "A", airValue: 100, notes: "None" },
+            tires: { tireGrade: "A", tireValue: 100, notes: "None" },
+            cabin: { cabinGrade: "A", cabinValue: 100, notes: "None" },
+            brakes: { brakeGrade: "A", brakeValue: 100, notes: "None" },
+            rotor: { rotorGrade: "A", rotorValue: 100, notes: "None" },
+            oil: { oilGrade: "A", oilValue: 100, notes: "None" }
         };
         console.log("db", db);
         //fill out form info
         setDoc(userRef, { 
-            email: capitalizedEmail,
+            email: email.value,
             firstName: name.value,
             lastName: "",
             phoneNumber: number.value,
@@ -407,7 +407,6 @@ async function createUser() {
             carData: carData,
             bioId: bioId,
             image: image,
-            imageFile: imageFile,
         }, { merge: true });
 
 
