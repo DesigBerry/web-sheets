@@ -43,6 +43,7 @@ let carMake;
 let carModel;
 let subPackage;
 let docData;
+let docDataSub;
 let priceId;
 
 //edit info variable
@@ -83,7 +84,6 @@ auth.onAuthStateChanged(async function (user) {
       carYear = carData["carYear"];
       carMake = carData["make"];
       carModel = carData["model"];
-      subPackage = docData["subscription"];
       
       userEmail.value = email;
       userName.innerText = name;
@@ -100,11 +100,15 @@ auth.onAuthStateChanged(async function (user) {
     }
     
     //get subscription info
-        // Query a reference to a subcollection
-        const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-        querySnapshotSub.forEach((doc) => {
+      // Query the subscription doc in the user info
+      const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+      querySnapshotSub.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
       console.log(doc.id, " => ", doc.data());
+      //grab the user's subscription's name
+      docDataSub = doc.data();
+      subPackage = docDataSub.items[0].price.product.name;
+      console.log(subPackage);
     });
 });
 
