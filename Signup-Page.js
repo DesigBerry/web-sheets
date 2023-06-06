@@ -338,13 +338,13 @@ async function grabInfo1() {
     //put grabbed info in an array and return it
     let formData = [email.value, name.value, number.value, city.value, state.value];
     
-    //create a customer in HubSpot
-    const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?email=${email.value}&firstname=${name.value}&number=${number.value}&city=${city.value}&state=${state.value}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+//     //create a customer in HubSpot
+//     const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/createHubSpotContact?email=${email.value}&firstname=${name.value}&number=${number.value}&city=${city.value}&state=${state.value}`, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//     });
     
     return formData;
 }
