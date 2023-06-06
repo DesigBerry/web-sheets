@@ -110,8 +110,8 @@ auth.onAuthStateChanged(async function (user) {
       docDataSubId = doc.id;
     });
     
-    //get subscription info
-    const docRefSub = doc(db, "subscriptions", docDataSubId);
+    //check subscription info
+    const docRefSub = doc(db, "Client", userId, "subscriptions", docDataSubId);
     const docRefSubSnap = await getDoc(docRefSub);
     //if the user has a subscription
     if(docRefSubSnap.exists()) {
