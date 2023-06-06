@@ -101,23 +101,24 @@ auth.onAuthStateChanged(async function (user) {
       console.log("No such document!");
     }
     
-    //grab subscription id
-    const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-      querySnapshotSub.forEach((doc) => {
-      //grab the user's subscription's name
-      docDataSub = doc.data();
-      subPackage = docDataSub.items[0].price.product.name;
-      docDataSubId = doc.id;
-    });
+//     //grab subscription id
+//     const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+//       querySnapshotSub.forEach((doc) => {
+//       //grab the user's subscription's name
+//       docDataSub = doc.data();
+//       subPackage = docDataSub.items[0].price.product.name;
+//       docDataSubId = doc.id;
+//     });
     
     //check subscription info
-    const docRefSub = doc(db, "Client", userId, "subscriptions", docDataSubId);
-    const docRefSubSnap = await getDoc(docRefSub);
+    const colRef = collection(db, "Client", userId, "subscriptions");
+    const colRefSub = await getDoc(colRef);
     //if the user has a subscription
-    if(docRefSubSnap.exists()) {
+    console.log("colRefSub", colRefSub);
+    if(colRefSub.exists()) {
         //grab the user's subscription's name
-        docDataSub = doc.data();
-        subPackage = docDataSub.items[0].price.product.name;
+//         docDataSub = doc.data();
+//         subPackage = docDataSub.items[0].price.product.name;
         console.log("it exists");
     //if the user doesn't have a subscription
     } else {
