@@ -427,7 +427,7 @@ async function createUser() {
         });
         
         //go to subscribe page
-        window.location.href = "/subscribe";
+//         window.location.href = "/subscribe";
 
       }
 }
