@@ -112,7 +112,7 @@ auth.onAuthStateChanged(async function (user) {
     
     //check subscription info
     const colRef = collection(db, "Client", userId, "subscriptions");
-    const colRefSub = await getDoc(colRef);
+    const colRefSub = await getDocs(colRef);
     //if the user has a subscription
     console.log("colRefSub", colRefSub);
     if(colRefSub.exists()) {
