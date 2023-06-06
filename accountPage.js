@@ -102,7 +102,7 @@ auth.onAuthStateChanged(async function (user) {
     //get subscription info
     // Query the subscription doc in the user info
     const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-    if(querySnapshotSub.exitsts()) {
+    if(querySnapshotSub.exists()) {
         querySnapshotSub.forEach((doc) => {
         //grab the user's subscription's name
         docDataSub = doc.data();
