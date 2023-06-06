@@ -71,6 +71,9 @@ auth.onAuthStateChanged(async function (user) {
     userId = user.uid;
     const docRef = doc(db, "Clients", userId);
     const docSnap = await getDoc(docRef);
+    
+    console.log(docRef);
+    
     if (docSnap.exists()) {
       docData = docSnap.data();
       let carData = docData["carData"];
@@ -98,8 +101,6 @@ auth.onAuthStateChanged(async function (user) {
       // docSnap.data() will be undefined in this case
       console.log("No such document!");
     }
-    
-    console.log(docData);
     
 //     if() {
         //get subscription info
