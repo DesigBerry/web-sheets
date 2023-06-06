@@ -40,7 +40,7 @@ let privatePages = [
 
 //pages hidden when user IS signed in
 let publicPages = [
-  '/signup1',
+//   '/signup1',
   '/signin',
 ];
 
