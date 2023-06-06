@@ -419,7 +419,7 @@ async function createUser() {
         let first = "first";
         
         //create a customer in HubSpot
-        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${first}&newCarYear=${carYear.value}&newCarMake=${carMake.value}&newCarModel=${carModel.value}`, {
+        const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${first}&newCarYear=${year.value}&newCarMake=${make.value}&newCarModel=${model.value}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
