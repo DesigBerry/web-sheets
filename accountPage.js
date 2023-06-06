@@ -108,22 +108,21 @@ auth.onAuthStateChanged(async function (user) {
       docDataSub = doc.data();
       subPackage = docDataSub.items[0].price.product.name;
       docDataSubId = doc.id;
-      console.log(docDataSubId);
     });
     
-//     //get subscription info
-//     const docRefSub = doc(db, "Clients", userId, "subscriptions");
-//     const docRefSubSnap = await getDoc(docRefSub);
-//     //if the user has a subscription
-//     if(docRefSubSnap.exists()) {
-//         //grab the user's subscription's name
-//         docDataSub = doc.data();
-//         subPackage = docDataSub.items[0].price.product.name;
-//         console.log("it exists");
-//     //if the user doesn't have a subscription
-//     } else {
-//         console.log("it doesn't exist")
-//     };
+    //get subscription info
+    const docRefSub = doc(db, "subscriptions", docDataSubId);
+    const docRefSubSnap = await getDoc(docRefSub);
+    //if the user has a subscription
+    if(docRefSubSnap.exists()) {
+        //grab the user's subscription's name
+        docDataSub = doc.data();
+        subPackage = docDataSub.items[0].price.product.name;
+        console.log("it exists");
+    //if the user doesn't have a subscription
+    } else {
+        console.log("it doesn't exist")
+    };
     
 });
 
