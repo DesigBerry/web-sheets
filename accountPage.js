@@ -110,11 +110,11 @@ auth.onAuthStateChanged(async function (user) {
     });
     //now we are getting the document that contains the subscription info
     //this is the doc inside of a doc
-    const docRef = doc(db, "Clients", userId, "subscriptions", subId);
-    const docSnap = await getDoc(docRef);
+    const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
+    const docSnapSub = await getDoc(docRefSub);
     //this checks to see if the doc exists, which is where we wanna be i think
-    if (docSnap.exists()) {
-      let subData = docSnap.data();
+    if (docSnapSub.exists()) {
+      let subData = docSnapSub.data();
       //the flag for the update method
       let second = 'second';
       //weird name, can be changed, but this is the name that we want
