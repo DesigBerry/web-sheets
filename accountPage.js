@@ -86,6 +86,7 @@ auth.onAuthStateChanged(async function (user) {
       carYear = carData["carYear"];
       carMake = carData["make"];
       carModel = carData["model"];
+      subPackage = docData["subscription"];
       
       userEmail.value = email;
       userName.innerText = name;
@@ -118,20 +119,26 @@ auth.onAuthStateChanged(async function (user) {
       let second = "second";
       //get the subscription package name
       let subName = subData["items"][0].price.product.name;
-      //make the api request to hubspot to update the contact
-      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email}&flag=${second}&newSubscription=${subName}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-      //update the firebase document to have the subscription as the correct name
-      await updateDoc(doc(db, "Clients", userId), { subscription: subName });
-    
+        //if the user needs to update the package name or log a package name
+        if (subName != subPackage) {
+          //make the api request to hubspot to update the contact
+          const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email}&flag=${second}&newSubscription=${subName}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+          //update the firebase document to have the subscription as the correct name
+          await updateDoc(doc(db, "Clients", userId), { subscription: subName });
+        //if the user already has a package and didn't get a new one
+        } else {
+            return;
+        }
     } else {
       // docSnap.data() will be undefined in this case
       //not sure what we wanna do in here but yea if this isnt there we handle it here 
       console.log("No such document!");
+        return;
     }
     
 });
