@@ -119,7 +119,7 @@ auth.onAuthStateChanged(async function (user) {
       //get the subscription package name
       let subName = subData["items"][0].price.product.name;
       //make the api request to hubspot to update the contact
-      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${subName}`, {
+      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${subName.value}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
