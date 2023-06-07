@@ -117,7 +117,7 @@ auth.onAuthStateChanged(async function (user) {
       //the flag for the update method
       let second = "second";
       //get the subscription package name
-      let subName = subData["subName"][0].price.product.name;
+      let subName = subData["items"][0].price.product.name;
       //update the firebase document to have the subscription as the correct name
       await updateDoc(doc(db, "Clients", userId), { subscription: subName });
         //make the api request to hubspot to update the contact
