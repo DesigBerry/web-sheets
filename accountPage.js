@@ -118,45 +118,22 @@ auth.onAuthStateChanged(async function (user) {
       let second = "second";
       //get the subscription package name
       let subName = subData["items"][0].price.product.name;
-      //update the firebase document to have the subscription as the correct name
-      await updateDoc(doc(db, "Clients", userId), { subscription: subName });
-        //make the api request to hubspot to update the contact
+      //make the api request to hubspot to update the contact
       const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${subName}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
         });
+      //update the firebase document to have the subscription as the correct name
+      await updateDoc(doc(db, "Clients", userId), { subscription: subName });
+        console.log("subName", subName);
     
     } else {
       // docSnap.data() will be undefined in this case
       //not sure what we wanna do in here but yea if this isnt there we handle it here 
       console.log("No such document!");
     }
-    
-//     //grab subscription id
-//     const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
-//       querySnapshotSub.forEach((doc) => {
-//       //grab the user's subscription's name
-//       docDataSub = doc.data();
-//       subPackage = docDataSub.items[0].price.product.name;
-//       docDataSubId = doc.id;
-//     });
-    
-//     //check subscription info
-//     const colRef = collection(db, "Client", userId, "subscriptions");
-//     const colRefSub = await getDocs(colRef);
-//     //if the user has a subscription
-//     console.log("colRefSub", colRefSub);
-//     if(colRefSub.exists()) {
-//         //grab the user's subscription's name
-// //         docDataSub = doc.data();
-// //         subPackage = docDataSub.items[0].price.product.name;
-//         console.log("it exists");
-//     //if the user doesn't have a subscription
-//     } else {
-//         console.log("it doesn't exist")
-//     };
     
 });
 
