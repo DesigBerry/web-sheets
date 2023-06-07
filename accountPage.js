@@ -46,7 +46,7 @@ let subPackage;
 let docData;
 let docDataSub;
 let priceId;
-let docDataSubId;
+let subId;
 
 //edit info variable
 let cantEdit = true;
@@ -101,6 +101,41 @@ auth.onAuthStateChanged(async function (user) {
       console.log("No such document!");
     }
     
+    //this snapshot is how we get the subscription id
+    //we then store it in the global variable
+    const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+    subSnapshot.forEach((doc) => {
+    subId = doc.id;
+    console.log("Sub ID: ", subId);
+    });
+    //now we are getting the document that contains the subscription info
+    //this is the doc inside of a doc
+    const docRef = doc(db, "Clients", userId, "subscriptions", subId);
+    const docSnap = await getDoc(docRef);
+    //this checks to see if the doc exists, which is where we wanna be i think
+    if (docSnap.exists()) {
+      let subData = docSnap.data();
+      //the flag for the update method
+      let second = 'second';
+      //weird name, can be changed, but this is the name that we want
+      let items = subData["items"][0].price.product.name;
+      console.log("Sub items zero: ", subData["items"][0].price.product.name);
+      //update the firebase document to have the subscription as the correct name
+      await updateDoc(doc(db, "Clients", userId), { subscription: items });
+        //make the api request to hubspot to update the contact
+      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${items}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+    
+    } else {
+      // docSnap.data() will be undefined in this case
+      //not sure what we wanna do in here but yea if this isnt there we handle it here 
+      console.log("No such document!");
+    }
+    
 //     //grab subscription id
 //     const querySnapshotSub = await getDocs(collection(db, "Clients", userId, "subscriptions"));
 //       querySnapshotSub.forEach((doc) => {
@@ -110,20 +145,20 @@ auth.onAuthStateChanged(async function (user) {
 //       docDataSubId = doc.id;
 //     });
     
-    //check subscription info
-    const colRef = collection(db, "Client", userId, "subscriptions");
-    const colRefSub = await getDocs(colRef);
-    //if the user has a subscription
-    console.log("colRefSub", colRefSub);
-    if(colRefSub.exists()) {
-        //grab the user's subscription's name
-//         docDataSub = doc.data();
-//         subPackage = docDataSub.items[0].price.product.name;
-        console.log("it exists");
-    //if the user doesn't have a subscription
-    } else {
-        console.log("it doesn't exist")
-    };
+//     //check subscription info
+//     const colRef = collection(db, "Client", userId, "subscriptions");
+//     const colRefSub = await getDocs(colRef);
+//     //if the user has a subscription
+//     console.log("colRefSub", colRefSub);
+//     if(colRefSub.exists()) {
+//         //grab the user's subscription's name
+// //         docDataSub = doc.data();
+// //         subPackage = docDataSub.items[0].price.product.name;
+//         console.log("it exists");
+//     //if the user doesn't have a subscription
+//     } else {
+//         console.log("it doesn't exist")
+//     };
     
 });
 
