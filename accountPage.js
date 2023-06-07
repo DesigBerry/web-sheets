@@ -106,7 +106,6 @@ auth.onAuthStateChanged(async function (user) {
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
     subSnapshot.forEach((doc) => {
     subId = doc.id;
-    console.log("Sub ID: ", subId);
     });
     //now we are getting the document that contains the subscription info
     //this is the doc inside of a doc
@@ -116,14 +115,13 @@ auth.onAuthStateChanged(async function (user) {
     if (docSnapSub.exists()) {
       let subData = docSnapSub.data();
       //the flag for the update method
-      let second = 'second';
-      //weird name, can be changed, but this is the name that we want
-      let items = subData["items"][0].price.product.name;
-      console.log("Sub items zero: ", subData["items"][0].price.product.name);
+      let second = "second";
+      //get the subscription package name
+      let subName = subData["subName"][0].price.product.name;
       //update the firebase document to have the subscription as the correct name
-      await updateDoc(doc(db, "Clients", userId), { subscription: items });
+      await updateDoc(doc(db, "Clients", userId), { subscription: subName });
         //make the api request to hubspot to update the contact
-      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${items}`, {
+      const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${email.value}&flag=${second}&newSubscription=${subName}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
