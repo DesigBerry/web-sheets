@@ -47,9 +47,14 @@ let docData;
 let docDataSub;
 let priceId;
 let subId;
-
 //edit info variable
 let cantEdit = true;
+//user id variable
+let userId;
+//password field variable
+let accountPassword;
+//password wrap variable
+let accountPasswordWrap;
 
 //html Ids
 //buttons
@@ -64,9 +69,10 @@ const userState = document.getElementById("userState");
 const userCarYear = document.getElementById("userCarYear");
 const userCarMake = document.getElementById("userCarMake");
 const userCarModel = document.getElementById("userCarModel");
+//password wrap & field
+const accountPassword = document.getElementById("accountPassword");
+const accountPasswordWrap = document.getElementById("accountPasswordWrap");
 
-//user id variable
-let userId;
 
 //get user information doc from Firebase
 auth.onAuthStateChanged(async function (user) {
@@ -154,18 +160,31 @@ userCarModel.disabled = cantEdit;
 
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
-    cantEdit = false;
-    //
-    userEmail.disabled = cantEdit;
-    userNumber.disabled = cantEdit;
-    userCity.disabled = cantEdit;
-    userState.disabled = cantEdit;
-    userCarYear.disabled = cantEdit;
-    userCarMake.disabled = cantEdit;
-    userCarModel.disabled = cantEdit;
-    //hide "edit info" button & show "save"
-    accountInfoEditInfo.style.display = "none";
-    accountInfoSave.style.display = "block";
+    //turn on password form
+    
+    //start password check process
+    signInWithEmailAndPassword(auth, email, password).then(user => {
+    //if it makes it here, the password is correct
+    console.log("Correct password");
+
+            
+        }).catch(err => {
+//should only make it here if the password is incorrect
+            console.log("There was an error " + err); alert("The credentials entered are wrong.")
+        })
+    
+        cantEdit = false;
+        //
+        userEmail.disabled = cantEdit;
+        userNumber.disabled = cantEdit;
+        userCity.disabled = cantEdit;
+        userState.disabled = cantEdit;
+        userCarYear.disabled = cantEdit;
+        userCarMake.disabled = cantEdit;
+        userCarModel.disabled = cantEdit;
+        //hide "edit info" button & show "save"
+        accountInfoEditInfo.style.display = "none";
+        accountInfoSave.style.display = "block";
     
 });
 
