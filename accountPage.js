@@ -167,6 +167,7 @@ accountInfoEditInfo.addEventListener('click', function(event) {
     
     //password button event listener
     passwordButton.addEventListener('click', function(event) {
+        console.log(accountPassword);
         password = accountPassword.value;
         
         //start password check process
