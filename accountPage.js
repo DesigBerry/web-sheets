@@ -171,6 +171,8 @@ accountInfoEditInfo.addEventListener('click', function(event) {
         
         //start password check process
         signInWithEmailAndPassword(auth, email, password).then(user => {
+            //turn off password wrap
+            accountPasswordWrap.style.display = 'none';
             //if it makes it here, the password is correct
             cantEdit = false;
             //turn on editing for the fields
