@@ -51,16 +51,8 @@ let subId;
 let cantEdit = true;
 //user id
 let userId;
-//password field
-let accountPassword;
-//password wrap
-let accountPasswordWrap;
-//password button
-let passwordButton;
-//password error message
-let passwordError;
-//loading animation
-let saveLoading;
+//password
+let password;
 
 //html Ids
 //buttons
