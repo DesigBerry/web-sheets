@@ -245,6 +245,6 @@ accountInfoSave.addEventListener('click', async function(event) {
 });
 
 //function to turn off the save loading block after saving is done
-function finishedSaving() {
+async function finishedSaving() {
     saveLoading.style.disaply = 'none';
 };
