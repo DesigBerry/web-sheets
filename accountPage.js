@@ -47,14 +47,20 @@ let docData;
 let docDataSub;
 let priceId;
 let subId;
-//edit info variable
+//edit info
 let cantEdit = true;
-//user id variable
+//user id
 let userId;
-//password field variable
+//password field
 let accountPassword;
-//password wrap variable
+//password wrap
 let accountPasswordWrap;
+//password button
+let passwordButton;
+//password error message
+let passwordError;
+//loading animation
+let saveLoading;
 
 //html Ids
 //buttons
@@ -69,9 +75,13 @@ const userState = document.getElementById("userState");
 const userCarYear = document.getElementById("userCarYear");
 const userCarMake = document.getElementById("userCarMake");
 const userCarModel = document.getElementById("userCarModel");
-//password wrap & field
+//password wrap, field, button & error message
 const accountPassword = document.getElementById("accountPassword");
 const accountPasswordWrap = document.getElementById("accountPasswordWrap");
+const passwordButton = document.getElementById("passwordButton");
+const passwordError = document.getElementById("passwordError");
+//loading animation
+const saveLoading = document.getElementById("saveLoading");
 
 
 //get user information doc from Firebase
@@ -161,37 +171,43 @@ userCarModel.disabled = cantEdit;
 //turn on the ability to type in form field
 accountInfoEditInfo.addEventListener('click', function(event) {
     //turn on password form
+    accountPasswordWrap.style.display = 'block';
     
-    //start password check process
-    signInWithEmailAndPassword(auth, email, password).then(user => {
-    //if it makes it here, the password is correct
-    console.log("Correct password");
-
+    //password button event listener
+    passwordButton.addEventListener('click', function(event) {
+        password = accountPassword.value;
+        
+        //start password check process
+        signInWithEmailAndPassword(auth, email, password).then(user => {
+            //if it makes it here, the password is correct
+            cantEdit = false;
+            //turn on editing for the fields
+            userEmail.disabled = cantEdit;
+            userNumber.disabled = cantEdit;
+            userCity.disabled = cantEdit;
+            userState.disabled = cantEdit;
+            userCarYear.disabled = cantEdit;
+            userCarMake.disabled = cantEdit;
+            userCarModel.disabled = cantEdit;
+            //hide error message
+            passwordError.style.display = 'none';
+            //hide "edit info" button & show "save"
+            accountInfoEditInfo.style.display = "none";
+            accountInfoSave.style.display = "block";
             
         }).catch(err => {
-//should only make it here if the password is incorrect
-            console.log("There was an error " + err); alert("The credentials entered are wrong.")
+            //should only make it here if the password is incorrect
+            console.log("There was an error " + err);
+            //show error message
+            passwordError.style.display = 'block';
         })
-    
-        cantEdit = false;
-        //
-        userEmail.disabled = cantEdit;
-        userNumber.disabled = cantEdit;
-        userCity.disabled = cantEdit;
-        userState.disabled = cantEdit;
-        userCarYear.disabled = cantEdit;
-        userCarMake.disabled = cantEdit;
-        userCarModel.disabled = cantEdit;
-        //hide "edit info" button & show "save"
-        accountInfoEditInfo.style.display = "none";
-        accountInfoSave.style.display = "block";
-    
+    });
 });
 
 //turn off the ability to type in form field
 accountInfoSave.addEventListener('click', async function(event) {
     cantEdit = true;
-    //
+    //turn off editing for fields
     userEmail.disabled = cantEdit;
     userNumber.disabled = cantEdit;
     userCity.disabled = cantEdit;
@@ -199,12 +215,13 @@ accountInfoSave.addEventListener('click', async function(event) {
     userCarYear.disabled = cantEdit;
     userCarMake.disabled = cantEdit;
     userCarModel.disabled = cantEdit;
-    //hide "save" button & show "edit info"
+    //hide "save" button, show "edit info" & turn on loading animation
     accountInfoEditInfo.style.display = "block";
     accountInfoSave.style.display = "none";
+    saveLoading.style.display = 'block';
     
     //update firebase
-    await updateDoc(doc(db, "Clients", userId), { email: userEmail.value, phoneNumber: userNumber.value  });
+    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number.value, city: city, state: state, carYear: carYear, make: carMake, model: carModel  });
             const credential = EmailAuthProvider.credential(
                 auth.currentUser.email,
                 password
@@ -218,8 +235,8 @@ accountInfoSave.addEventListener('click', async function(event) {
             // const credential = promptForCredentials();
 
             updateEmail(auth.currentUser, userEmail.value).then(() => {
-                // Email updated!
-                // ...
+                // account updated!
+                saveLoading.style.display = 'none';
             }).catch((error) => {
                 // An error occurred
                 // ...
