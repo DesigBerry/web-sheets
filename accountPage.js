@@ -72,8 +72,11 @@ const accountPassword = document.getElementById("accountPassword");
 const accountPasswordWrap = document.getElementById("accountPasswordWrap");
 const passwordButton = document.getElementById("passwordButton");
 const passwordError = document.getElementById("passwordError");
-//loading animation
+//loading animation, save text, & the wrap
 const saveLoading = document.getElementById("saveLoading");
+const loadingTire = document.getElementById("loadingTire");
+const saveText = document.getElementById("saveText");
+
 
 
 //get user information doc from Firebase
@@ -213,6 +216,7 @@ accountInfoSave.addEventListener('click', async function(event) {
     accountInfoEditInfo.style.display = "block";
     accountInfoSave.style.display = "none";
     saveLoading.style.display = 'block';
+    saveText.style.display = 'none';
     
     //update firebase
     await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number, city: city, state: state, carYear: carYear, make: carMake, model: carModel  });
@@ -225,12 +229,12 @@ accountInfoSave.addEventListener('click', async function(event) {
                 credential
             )
 
-            // TODO(you): prompt the user to re-provide their sign-in credentials
-            // const credential = promptForCredentials();
-
             updateEmail(auth.currentUser, userEmail.value).then(() => {
                 // account updated!
-                saveLoading.style.display = 'none';
+                loadingTire.style.display = 'none';
+                saveText.style.display = 'block';
+                //turn off loading block after 1 second
+                setTimeout(finishedSaving, 1000);
             }).catch((error) => {
                 // An error occurred
                 // ...
@@ -239,3 +243,10 @@ accountInfoSave.addEventListener('click', async function(event) {
             });
     
 });
+
+//function to turn off the save loading block after saving is done
+function finishedSaving() {
+    loadingTire.style.display = 'block';
+    saveText.style.display = 'none';
+    saveLoading.style.disaply = 'none';
+};
