@@ -215,7 +215,7 @@ accountInfoSave.addEventListener('click', async function(event) {
     saveLoading.style.display = 'block';
     
     //update firebase
-    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number.value, city: city, state: state, carYear: carYear, make: carMake, model: carModel  });
+    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number, city: city, state: state, carYear: carYear, make: carMake, model: carModel  });
             const credential = EmailAuthProvider.credential(
                 auth.currentUser.email,
                 password
