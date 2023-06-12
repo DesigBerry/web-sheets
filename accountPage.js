@@ -216,6 +216,7 @@ accountInfoSave.addEventListener('click', async function(event) {
     accountInfoEditInfo.style.display = "block";
     accountInfoSave.style.display = "none";
     saveLoading.style.display = 'block';
+    saveLoading.style.opacity = '100%';
     saveText.style.display = 'none';
     
     //update firebase
@@ -239,7 +240,7 @@ accountInfoSave.addEventListener('click', async function(event) {
             // An error occurred
             // ...
             console.log("The current user: '", auth.currentUser);
-            console.log("error fool, ", error)
+            console.log("error fool, ", error);
         });
     
     //update HubSpot
@@ -256,4 +257,5 @@ accountInfoSave.addEventListener('click', async function(event) {
 //function to turn off the save loading block after saving is done
 async function finishedSaving() {
     saveLoading.style.display = 'none';
+    saveLoading.style.opacity = '0%';
 };
