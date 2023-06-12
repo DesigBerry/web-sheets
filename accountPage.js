@@ -70,8 +70,8 @@ const userCarModel = document.getElementById("userCarModel");
 //password wrap, field, button & error message
 const accountPassword = document.getElementById("accountPassword");
 const accountPasswordWrap = document.getElementById("accountPasswordWrap");
-const accountPasswordWrapBG = document.getElementById("closeButton");
-const closeButton = document.getElementById("accountPasswordWrapBG");
+const accountPasswordWrapBG = document.getElementById("accountPasswordWrapBG");
+const closeButton = document.getElementById("closeButton");
 const passwordButton = document.getElementById("passwordButton");
 const passwordError = document.getElementById("passwordError");
 //loading animation, save text, & the wrap
