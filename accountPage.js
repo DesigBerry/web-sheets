@@ -236,6 +236,7 @@ accountInfoSave.addEventListener('click', async function(event) {
             saveText.style.display = 'block';
             //turn off loading block after 1 second
             setTimeout(finishedSaving, 2000);
+            saveLoading.style.display = 'none';
         }).catch((error) => {
             // An error occurred
             // ...
@@ -255,19 +256,7 @@ accountInfoSave.addEventListener('click', async function(event) {
 });
 
 //function to turn off the save loading block after saving is done
-async function finishedSaving() {
+function finishedSaving() {
 //     saveLoading.style.display = 'none';
-//     saveLoading.style.opacity = '0%';
-    saveLoading.addEventListener('transitionend', function listener1() {
-    saveLoading.removeEventListener('transitionend', listener1);
-    
-    saveLoading.addEventListener('transitionend', function listener2() {
-      saveLoading.removeEventListener('transitionend', listener2);
-      saveLoading.style.display = 'none'; // remove text
-    });
-    
-    window.setTimeout(function () {
-      saveLoading.style.opacity = 0; // hide text
-    }, 1000);
-  });
+    saveLoading.style.opacity = '0%';
 };
