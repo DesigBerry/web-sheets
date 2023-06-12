@@ -76,6 +76,9 @@ const passwordError = document.getElementById("passwordError");
 const saveLoading = document.getElementById("saveLoading");
 const loadingTire = document.getElementById("loadingTire");
 const saveText = document.getElementById("saveText");
+//stripe customer portal buttons
+const billingInfoLink = document.getElementById("billingInfoLink");
+const subInfoLink = document.getElementById("subInfoLink");
 
 
 
@@ -253,6 +256,11 @@ accountInfoSave.addEventListener('click', async function(event) {
         },
     });
     
+});
+
+//stripe "billing information" portal button
+billingInfoLink.addEventListener('click', async function(event) {
+    window.location.replace('');
 });
 
 //function to turn off the save loading block after saving is done
