@@ -70,6 +70,7 @@ const userCarModel = document.getElementById("userCarModel");
 //password wrap, field, button & error message
 const accountPassword = document.getElementById("accountPassword");
 const accountPasswordWrap = document.getElementById("accountPasswordWrap");
+const accountPasswordWrapBG = document.getElementById("accountPasswordWrapBG");
 const passwordButton = document.getElementById("passwordButton");
 const passwordError = document.getElementById("passwordError");
 //loading animation, save text, & the wrap
@@ -170,6 +171,7 @@ userCarModel.disabled = cantEdit;
 accountInfoEditInfo.addEventListener('click', function(event) {
     //turn on password form
     accountPasswordWrap.style.display = 'block';
+    accountPasswordWrapBG.style.display - 'block';
     
     //password button event listener
     passwordButton.addEventListener('click', function(event) {
@@ -179,6 +181,7 @@ accountInfoEditInfo.addEventListener('click', function(event) {
         signInWithEmailAndPassword(auth, email, password).then(user => {
             //turn off password wrap
             accountPasswordWrap.style.display = 'none';
+            accountPasswordWrapBG.style.display - 'none';
             //if it makes it here, the password is correct
             cantEdit = false;
             //turn on editing for the fields
@@ -215,8 +218,9 @@ accountPassword.addEventListener("keypress", function(event){
 });
 
 //clicking outside of the password box will close it
-accountPasswordWrap.addEventListener("click", function(event){
-      accountPasswordWrap.style.display = 'none';
+accountPasswordWrapBG.addEventListener("click", function(event){
+    accountPasswordWrap.style.display = 'none';
+    accountPasswordWrapBG.style.display = 'none';
 });
 
 //save info and turn off editing
