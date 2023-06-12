@@ -70,7 +70,8 @@ const userCarModel = document.getElementById("userCarModel");
 //password wrap, field, button & error message
 const accountPassword = document.getElementById("accountPassword");
 const accountPasswordWrap = document.getElementById("accountPasswordWrap");
-const accountPasswordWrapBG = document.getElementById("accountPasswordWrapBG");
+const accountPasswordWrapBG = document.getElementById("closeButton");
+const closeButton = document.getElementById("accountPasswordWrapBG");
 const passwordButton = document.getElementById("passwordButton");
 const passwordError = document.getElementById("passwordError");
 //loading animation, save text, & the wrap
@@ -219,6 +220,13 @@ accountPassword.addEventListener("keypress", function(event){
 
 //clicking outside of the password box will close it
 accountPasswordWrapBG.addEventListener("click", function(event){
+    accountPasswordWrap.style.display = 'none';
+    accountPasswordWrapBG.style.display = 'none';
+    passwordError.style.display = 'none';
+});
+
+//clicking the "x" in the password pop-up closes it
+closeButton.addEventListener("click", function(event){
     accountPasswordWrap.style.display = 'none';
     accountPasswordWrapBG.style.display = 'none';
     passwordError.style.display = 'none';
