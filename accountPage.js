@@ -181,7 +181,7 @@ accountInfoEditInfo.addEventListener('click', function(event) {
         signInWithEmailAndPassword(auth, email, password).then(user => {
             //turn off password wrap
             accountPasswordWrap.style.display = 'none';
-            accountPasswordWrapBG.style.display - 'none';
+            accountPasswordWrapBG.style.display = 'none';
             //if it makes it here, the password is correct
             cantEdit = false;
             //turn on editing for the fields
@@ -221,6 +221,7 @@ accountPassword.addEventListener("keypress", function(event){
 accountPasswordWrapBG.addEventListener("click", function(event){
     accountPasswordWrap.style.display = 'none';
     accountPasswordWrapBG.style.display = 'none';
+    passwordError.style.display = 'none';
 });
 
 //save info and turn off editing
