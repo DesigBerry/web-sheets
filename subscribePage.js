@@ -62,7 +62,7 @@ auth.onAuthStateChanged(async function (user) {
 });
 
 //button functions
-//car health button
+//car health button 
 carHealthButton.addEventListener('click', function (event) {
     priceId = 'price_1MvNnbDP5LxOspIEg7tFpQwt';
     window.location.href = `https://us-central1-openbayautos.cloudfunctions.net/webflowSession?prefilled_email=${email}&client_reference_id=${stripeId}&document_data=${docData}&price_id=${priceId}`;
