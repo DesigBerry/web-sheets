@@ -258,5 +258,16 @@ accountInfoSave.addEventListener('click', async function(event) {
 async function finishedSaving() {
 //     saveLoading.style.display = 'none';
 //     saveLoading.style.opacity = '0%';
-    saveLoading.classList.toggle('fade');
+    saveLoading.addEventListener('transitionend', function listener1() {
+    saveLoading.removeEventListener('transitionend', listener1);
+    
+    saveLoading.addEventListener('transitionend', function listener2() {
+      saveLoading.removeEventListener('transitionend', listener2);
+      saveLoading.style.display = 'none'; // remove text
+    });
+    
+    window.setTimeout(function () {
+      saveLoading.style.opacity = 0; // hide text
+    }, 1000);
+  });
 };
