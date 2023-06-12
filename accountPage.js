@@ -219,8 +219,13 @@ accountPassword.addEventListener("keypress", function(event){
 
 //clicking outside of the password box will close it
 accountPasswordWrapBG.addEventListener("click", function(event){
-    accountPasswordWrap.style.display = 'none';
     accountPasswordWrapBG.style.display = 'none';
+});
+
+//clicking inside of the password box prevents it from closing
+accountPasswordWrap.addEventListener("click", function(event){
+    //stop the default webflow error message
+    event.preventDefault();
 });
 
 //save info and turn off editing
