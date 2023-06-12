@@ -204,6 +204,16 @@ accountInfoEditInfo.addEventListener('click', function(event) {
     });
 });
 
+//pressing enter while in the "password" field to edit account info
+accountPassword.addEventListener("keypress", function(event){
+  if (event.key === "Enter") {
+      //stop the default webflow error message
+      event.preventDefault();
+      //submit password
+      passwordButton.click();
+  };
+});
+
 //save info and turn off editing
 accountInfoSave.addEventListener('click', async function(event) {
     cantEdit = true;
@@ -270,7 +280,6 @@ subInfoLink.addEventListener('click', async function(event) {
 
 //function to turn off the save loading block after saving is done
 function finishedSaving() {
-//     saveLoading.style.display = 'none';
-//     saveLoading.style.opacity = '0%';
-    saveLoading.classList.toggle('fade');
+    saveLoading.style.opacity = '0%';
+    saveLoading.style.display = 'none';
 };
