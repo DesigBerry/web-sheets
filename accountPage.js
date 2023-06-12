@@ -242,6 +242,15 @@ accountInfoSave.addEventListener('click', async function(event) {
             console.log("error fool, ", error)
         });
     
+    //update HubSpot
+    let third = 'third';
+            const response = await fetch(`https://us-central1-openbayautos.cloudfunctions.net/updateHubSpotContact?email=${userEmail.value}&flag=${third}&firstname=${name}&number=${userNumber.value}&city=${userCity.value}&state=${userState.value}&newCarYear=${userCarYear.value}&newCarMake=${userCarMake.value}&newCarModel=${userCarModel.value}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    
 });
 
 //function to turn off the save loading block after saving is done
