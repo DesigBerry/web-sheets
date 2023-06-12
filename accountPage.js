@@ -230,6 +230,7 @@ accountInfoSave.addEventListener('click', async function(event) {
     accountInfoSave.style.display = "none";
     saveLoading.style.display = 'block';
     saveLoading.style.opacity = '100%';
+    loadingTire.style.display = 'block';
     saveText.style.display = 'none';
     
     //update firebase
