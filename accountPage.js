@@ -250,7 +250,6 @@ accountInfoSave.addEventListener('click', async function(event) {
             saveText.style.display = 'block';
             //turn off loading block after 1 second
             setTimeout(finishedSaving, 2000);
-            saveLoading.style.display = 'none';
         }).catch((error) => {
             // An error occurred
             // ...
