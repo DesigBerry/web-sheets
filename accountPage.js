@@ -219,28 +219,28 @@ accountInfoSave.addEventListener('click', async function(event) {
     saveText.style.display = 'none';
     
     //update firebase
-    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number, city: city, state: state, "carData.carYear": carYear, "carData.make": carMake, "carData.model": carModel  });
-            const credential = EmailAuthProvider.credential(
-                auth.currentUser.email,
-                password
-            )
-            const result = await reauthenticateWithCredential(
-                auth.currentUser,
-                credential
-            )
+    await updateDoc(doc(db, "Clients", userId), { email: userEmail.value, phoneNumber: userNumber.value, city: userCity.value, state: userState.value, "carData.carYear": userCarYear.value, "carData.make": userCarMake.value, "carData.model": userCarModel.value  });
+        const credential = EmailAuthProvider.credential(
+            auth.currentUser.email,
+            password
+        )
+        const result = await reauthenticateWithCredential(
+            auth.currentUser,
+            credential
+        )
 
-            updateEmail(auth.currentUser, userEmail.value).then(() => {
-                // account updated!
-                loadingTire.style.display = 'none';
-                saveText.style.display = 'block';
-                //turn off loading block after 1 second
-                setTimeout(finishedSaving, 2000);
-            }).catch((error) => {
-                // An error occurred
-                // ...
-                console.log("The current user: '", auth.currentUser);
-                console.log("error fool, ", error)
-            });
+        updateEmail(auth.currentUser, userEmail.value).then(() => {
+            // account updated!
+            loadingTire.style.display = 'none';
+            saveText.style.display = 'block';
+            //turn off loading block after 1 second
+//             setTimeout(finishedSaving, 2000);
+        }).catch((error) => {
+            // An error occurred
+            // ...
+            console.log("The current user: '", auth.currentUser);
+            console.log("error fool, ", error)
+        });
     
 });
 
