@@ -260,7 +260,7 @@ accountInfoSave.addEventListener('click', async function(event) {
 
 //stripe "billing information" portal button
 billingInfoLink.addEventListener('click', async function(event) {
-    window.location.href = `https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`, `_blank`;
+    window.location.href = `https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`, '_blank';
 });
 
 //stripe "subscription information" portal button
