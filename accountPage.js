@@ -163,7 +163,7 @@ userCarYear.disabled = cantEdit;
 userCarMake.disabled = cantEdit;
 userCarModel.disabled = cantEdit;
 
-//turn on the ability to type in form field
+//turn on the ability to edit account info
 accountInfoEditInfo.addEventListener('click', function(event) {
     //turn on password form
     accountPasswordWrap.style.display = 'block';
@@ -201,7 +201,7 @@ accountInfoEditInfo.addEventListener('click', function(event) {
     });
 });
 
-//turn off the ability to type in form field
+//save info and turn off editing
 accountInfoSave.addEventListener('click', async function(event) {
     cantEdit = true;
     //turn off editing for fields
@@ -219,7 +219,7 @@ accountInfoSave.addEventListener('click', async function(event) {
     saveText.style.display = 'none';
     
     //update firebase
-    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number, city: city, state: state, carYear: carYear, make: carMake, model: carModel  });
+    await updateDoc(doc(db, "Clients", userId), { email: email, phoneNumber: number, city: city, state: state, "carData.carYear": carYear, "carData.make": carMake, "carData.model": carModel  });
             const credential = EmailAuthProvider.credential(
                 auth.currentUser.email,
                 password
