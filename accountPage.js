@@ -260,12 +260,12 @@ accountInfoSave.addEventListener('click', async function(event) {
 
 //stripe "billing information" portal button
 billingInfoLink.addEventListener('click', async function(event) {
-    window.location.href = `https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`;
+    window.open = `https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`;
 });
 
 //stripe "subscription information" portal button
 subInfoLink.addEventListener('click', async function(event) {
-    window.location.href = `https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`;
+    window.open(`https://billing.stripe.com/p/login/14kcOP2Hvb1W53O3cc?prefilled_email=${email}`);
 });
 
 //function to turn off the save loading block after saving is done
