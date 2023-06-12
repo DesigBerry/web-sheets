@@ -217,7 +217,6 @@ accountPassword.addEventListener("keypress", function(event){
 //clicking outside of the password box will close it
 accountPasswordWrap.addEventListener("click", function(event){
       accountPasswordWrap.style.display = 'none';
-  };
 });
 
 //save info and turn off editing
