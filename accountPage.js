@@ -234,10 +234,7 @@ accountInfoSave.addEventListener('click', async function(event) {
             loadingTire.style.display = 'none';
             saveText.style.display = 'block';
             //turn off loading block after 1 second
-            setTimeout(() => {
-                saveLoading.style.disaply = 'none';
-                console.log("set that mf timeout");
-            }, 2000);
+            setTimeout(finishedSaving, 2000);
         }).catch((error) => {
             // An error occurred
             // ...
@@ -257,6 +254,6 @@ accountInfoSave.addEventListener('click', async function(event) {
 });
 
 //function to turn off the save loading block after saving is done
-// async function finishedSaving() {
-//     saveLoading.style.disaply = 'none';
-// };
+async function finishedSaving() {
+    saveLoading.style.display = 'none';
+};
