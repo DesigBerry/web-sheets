@@ -53,7 +53,7 @@ auth.onAuthStateChanged( function (user) {
 });
 
 //function to check if user is signed in
-await function checkUserStatus(user) {
+function checkUserStatus(user) {
   if (user) {
       // User is signed in.
       if (publicPages.includes(currentPath)) {
