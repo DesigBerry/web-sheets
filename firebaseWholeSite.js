@@ -45,7 +45,7 @@ let publicPages = [
 ];
 
 // //check if user is signed in when page loads
-await checkUserStatus(user);
+await checkUserStatus();
 
 //function called whenever authentication state changes
 auth.onAuthStateChanged( function (user) {
