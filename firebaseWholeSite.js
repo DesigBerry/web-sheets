@@ -4,16 +4,19 @@ import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.18.0/firebase
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.18.0/firebase-auth.js";
 import { getFirestore, collection, getDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
-// Firebase API
+//Firebase API
 const firebaseConfig = {
-  apiKey: "AIzaSyBbkzuOmJcqTgfJyf2fbdciEeP59oJu0jY",
-  authDomain: "openbayautos.firebaseapp.com",
-  projectId: "openbayautos",
-  storageBucket: "openbayautos.appspot.com",
-  messagingSenderId: "244689157595",
-  appId: "1:244689157595:web:3a6c5650962e5a9eabbbfe",
-  measurementId: "G-36YCSJZJEN"
-};
+    apiKey: "AIzaSyBbkzuOmJcqTgfJyf2fbdciEeP59oJu0jY",
+    authDomain: "openbayautos.firebaseapp.com",
+    projectId: "openbayautos",
+    storageBucket: "openbayautos.appspot.com",
+    messagingSenderId: "244689157595",
+    appId: "1:244689157595:web:3a6c5650962e5a9eabbbfe",
+    measurementId: "G-36YCSJZJEN"
+  };
+
+//initialize Firebase
+let app;
 
 // Check if Firebase app has already been initialized
 try {
@@ -22,7 +25,6 @@ try {
   app = initializeApp(firebaseConfig);
 }
 
-// Initialize Firebase
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
