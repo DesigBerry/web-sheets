@@ -72,6 +72,8 @@ let userInfo;
 //form buttons
 const signUpButton1 = document.getElementById("signUpButton1");
 const signUpButton2 = document.getElementById("signUpButton2");
+//loading icon
+const signUpLoading = document.getElementById("signUpLoading");
 //form sections
 const signUpForm2 = document.getElementById("signUpForm2");
 const signUpPackages = document.getElementById("signUpPackages");
@@ -82,18 +84,6 @@ const buttonsWrap2 = document.getElementById("buttonsWrap2");
 //car make form field
 const signUpCarMake = document.getElementById("signUpCarMake");
 const signUpCarModel = document.getElementById("signUpCarModel");
-//package buttons
-const carHealthButton = document.getElementById("carHealthButton");
-const carCarButton = document.getElementById("carCarButton");
-const carMonitoringButton = document.getElementById("carMonitoringButton");
-//package selection popups
-const carHealthPopUp = document.getElementById("carHealthPopUp");
-const carCarePopUp = document.getElementById("carCarePopUp");
-const carMonitoringPopUp = document.getElementById("carMonitoringPopUp");
-//package cards
-const carHealthCard = document.getElementById("carHealthCard");
-const carCareCard = document.getElementById("carCareCard");
-const carMonitoringCard = document.getElementById("carMonitoringCard");
 //error messages
 const emailErrorMessage = document.getElementById("emailErrorMessage");
 const nameErrorMessage = document.getElementById("nameErrorMessage");
@@ -363,6 +353,9 @@ async function createUser() {
     validateForm(model, modelErrorMessage);
     //create user account
     if (year.value && (make.value != 'Car Make' && model.value != 'Car Model')) {
+        //turn on loading icon and turn off button
+        signUpButton2.style.display = 'none';
+        signUpLoading.style.display = 'block';
         
         //put grabbed info in an array and return it
         let formData = [year.value, make.value, model.value]
@@ -424,6 +417,10 @@ async function createUser() {
                 'Content-Type': 'application/json',
             },
         });
+
+        //turn button back on and turn off loading icon
+        signUpButton2.style.display = 'block';
+        signUpLoading.style.display = 'none';
         
         //go to subscribe page
         window.location.href = "/subscribe";
