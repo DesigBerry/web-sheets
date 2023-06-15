@@ -15,21 +15,13 @@ const firebaseConfig = {
     measurementId: "G-36YCSJZJEN"
   };
 
-//initialize Firebase
-let app;
-
-// Check if Firebase app has already been initialized
-try {
-  app = getApp();
-} catch {
-  app = initializeApp(firebaseConfig);
-}
-
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 // initialize Firestore
-const db = getFirestore();
+// const db = getFirestore();
 
 //variables
 let currentPath = window.location.pathname;
@@ -73,7 +65,10 @@ auth.onAuthStateChanged( function (user) {
 async function checkUserStatus(user) {
   if (user) {
     // User is signed in.
-      
+
+    //initialize Firestore
+    const db = getFirestore();
+
     userId = user.uid;
     //check if the user has a subscription
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
@@ -84,7 +79,7 @@ async function checkUserStatus(user) {
     //if the user is subscribed
     if (subId) {
 
-      //redirect them to the account page
+      //redirect them to the subscribe page
       if (publicPages.includes(currentPath)) {
         window.location.replace('/myaccount');
       } else {
@@ -102,7 +97,7 @@ async function checkUserStatus(user) {
     //if the user is not subscribed 
     } else {
     
-        //redirect to my subscribe page
+        //redirect to my account page
         if (publicPages.includes(currentPath)) {
           window.location.replace('/subscribe');
         } else {
