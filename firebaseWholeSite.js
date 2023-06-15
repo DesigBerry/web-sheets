@@ -20,6 +20,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+//initialize Firestore
+const db = getFirestore();
+
 //variables
 let currentPath = window.location.pathname;
 //subscription variable
