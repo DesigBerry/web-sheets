@@ -86,7 +86,6 @@ async function checkUserStatus(user) {
       //redirect them to the subscribe page
       if (publicPages.includes(currentPath)) {
         window.location.replace('/myaccount');
-      }
       } else {
         console.log('User is logged in!');
         console.log('Email: ' + user.email);
