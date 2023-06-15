@@ -115,6 +115,7 @@ async function checkUserStatus(user) {
           logInButton.style.display = 'none';
           subscribeLink.style.display = 'block';
         }
+    }
       
   } else {
       // User is signed out.
