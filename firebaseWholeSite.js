@@ -65,7 +65,7 @@ auth.onAuthStateChanged( function (user) {
 async function checkUserStatus(user) {
   if (user) {
     // User is signed in.
-
+      
     userId = user.uid;
     //check if the user has a subscription
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
@@ -76,7 +76,7 @@ async function checkUserStatus(user) {
     //if the user is subscribed
     if (subId) {
 
-      //redirect them to the subscribe page
+      //redirect them to the account page
       if (publicPages.includes(currentPath)) {
         window.location.replace('/myaccount');
       } else {
@@ -94,7 +94,7 @@ async function checkUserStatus(user) {
     //if the user is not subscribed 
     } else {
     
-        //redirect to my account page
+        //redirect to my subscribe page
         if (publicPages.includes(currentPath)) {
           window.location.replace('/subscribe');
         } else {
