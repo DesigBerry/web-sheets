@@ -43,7 +43,8 @@ let subscribeLink = document.getElementById('subscribeLink');
 //pages hidden when user ISN'T signed in
 let privatePages = [
   '/myaccount',
-  '/scheduleservice'
+  '/scheduleservice',
+  '/subscribe'
 ];
 
 //pages hidden when user IS signed in
