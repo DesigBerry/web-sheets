@@ -132,11 +132,11 @@ async function checkUserStatus(user) {
           signUp.style.display = 'block';
           logInButton.style.display = 'block';
           subscribeLink.style.display = 'block';
-
       }
+    
     }
-  }
-}
+   }
+
 
 //logout function
 logOut.addEventListener('click', logout);
