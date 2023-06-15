@@ -128,7 +128,7 @@ auth.onAuthStateChanged(async function (user) {
     //this is the doc inside of a doc
     const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
     const docSnapSub = await getDoc(docRefSub);
-    //this checks to see if the doc exists, which is where we wanna be i think
+    //this checks to see if the doc exists
     if (docSnapSub.exists()) {
       let subData = docSnapSub.data();
       //the flag for the update method
