@@ -37,17 +37,17 @@ let subId;
 
 //html ids
 //nav button ids
-let faqLink = document.getElementById('faqLink');
 let notSignedSchedule = document.getElementById('notSignedSchedule');
 let signUp = document.getElementById('signUp');
 let accountPageLink = document.getElementById('accountPageLink');
 let logOut = document.getElementById('logOut');
 let logInButton = document.getElementById('logInButton');
 let scheduleAppointmentButton = document.getElementById('scheduleAppointmentButton');
+let subscribeLink = document.getElementById('subscribeLink');
 
 //pages hidden when user ISN'T signed in
 let privatePages = [
- '/myaccount',
+  '/myaccount',
   '/scheduleservice'
 ];
 
@@ -64,17 +64,6 @@ let publicPages = [
 auth.onAuthStateChanged( function (user) {
   checkUserStatus(user);
 });
-
-
-
-    //now we are getting the document that contains the subscription info
-    //this is the doc inside of a doc
-    const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
-    const docSnapSub = await getDoc(docRefSub);
-    //this checks to see if the doc exists
-    if (docSnapSub.exists()) {
-
-
       
 //function to check if user is signed in
 async function checkUserStatus(user) {
@@ -82,8 +71,6 @@ async function checkUserStatus(user) {
     // User is signed in.
 
     //check if the user has a subscription
-    //this snapshot is how we get the subscription id
-    //we then store it in the global variable
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
     subSnapshot.forEach((doc) => {
     subId = doc.id;
@@ -93,18 +80,14 @@ async function checkUserStatus(user) {
     const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
     const docSnapSub = await getDoc(docRefSub);
     
-    //this checks to see if the doc exists
-    if (docSnapSub.!exists()) {
-      if (publicPages.includes(currentPath)) {
-        window.location.replace('/subscribe');
-    }
-      
-    } else {
+    //if the user is subscribed
+    if (docSnapSub.exists()) {
 
-    //redirect to my account if the user is signed in & subscribed
-    if (publicPages.includes(currentPath)) {
+      //redirect them to the subscribe page
+      if (publicPages.includes(currentPath)) {
         window.location.replace('/myaccount');
-    } else {
+      }
+      } else {
         console.log('User is logged in!');
         console.log('Email: ' + user.email);
         console.log('UID: ' + user.uid);
@@ -113,8 +96,28 @@ async function checkUserStatus(user) {
         notSignedSchedule.style.display = 'none';
         signUp.style.display = 'none';
         logInButton.style.display = 'none';
-
-    }
+        subscribeLink.style.display = 'none';
+      }
+    
+    //if the user is not subscribed 
+    } else {
+    
+        //redirect to my account page
+        if (publicPages.includes(currentPath)) {
+          window.location.replace('/subscribe');
+        } else {
+          console.log('User is logged in!');
+          console.log('Email: ' + user.email);
+          console.log('UID: ' + user.uid);
+          loadingScreen.style.display = 'none';
+          // New Home links
+          notSignedSchedule.style.display = 'none';
+          signUp.style.display = 'none';
+          logInButton.style.display = 'none';
+          subscribeLink.style.display = 'block';
+        }
+    
+      }
       
   } else {
       // User is signed out.
@@ -130,6 +133,7 @@ async function checkUserStatus(user) {
           notSignedSchedule.style.display = 'block';
           signUp.style.display = 'block';
           logInButton.style.display = 'block';
+          subscribeLink.style.display = 'block';
 
       }
     }
@@ -141,10 +145,4 @@ logOut.addEventListener('click', logout);
 function logout() {
   auth.signOut();
   window.location.replace('/');
-}
-
-//faq nav link
-faqLink.addEventListener('click', faqNav);
-function faqNav() {
-  window.location.replace('/#FAQs');
 }
