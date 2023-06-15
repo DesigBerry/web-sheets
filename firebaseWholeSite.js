@@ -25,8 +25,10 @@ const auth = getAuth(app);
 
 //variables
 let currentPath = window.location.pathname;
-//subscription variable
+//subscription identifier
 let subId;
+//user id
+let userId
 
 //html ids
 //nav button ids
@@ -65,6 +67,8 @@ async function checkUserStatus(user) {
 
     //initialize Firestore
     const db = getFirestore();
+
+    userId = user.uid;
     //check if the user has a subscription
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
     subSnapshot.forEach((doc) => {
