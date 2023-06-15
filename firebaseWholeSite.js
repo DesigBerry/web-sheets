@@ -77,7 +77,7 @@ auth.onAuthStateChanged( function (user) {
 
       
 //function to check if user is signed in
-function checkUserStatus(user) {
+async function checkUserStatus(user) {
   if (user) {
     // User is signed in.
 
