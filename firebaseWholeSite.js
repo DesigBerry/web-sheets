@@ -21,7 +21,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 //initialize Firestore
-const db = getFirestore();
+// const db = getFirestore();
 
 //variables
 let currentPath = window.location.pathname;
@@ -63,6 +63,8 @@ async function checkUserStatus(user) {
   if (user) {
     // User is signed in.
 
+    //initialize Firestore
+    const db = getFirestore();
     //check if the user has a subscription
     const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
     subSnapshot.forEach((doc) => {
