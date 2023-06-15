@@ -27,9 +27,6 @@ try {
   app = initializeApp(firebaseConfig);
 }
 
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-
 //initialize Firestore
 const db = getFirestore();
 
