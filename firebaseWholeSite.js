@@ -75,13 +75,9 @@ async function checkUserStatus(user) {
     subSnapshot.forEach((doc) => {
     subId = doc.id;
     });
-    //now we are getting the document that contains the subscription info
-    //this is the doc inside of a doc
-    const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
-    const docSnapSub = await getDoc(docRefSub);
     
     //if the user is subscribed
-    if (docSnapSub.exists()) {
+    if (subId) {
 
       //redirect them to the subscribe page
       if (publicPages.includes(currentPath)) {
