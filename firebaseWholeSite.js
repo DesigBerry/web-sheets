@@ -21,6 +21,8 @@ const auth = getAuth(app);
 
 //variables
 let currentPath = window.location.pathname;
+//subscription variable
+let subId;
 
 //html ids
 //nav button ids
@@ -40,7 +42,7 @@ let privatePages = [
 
 //pages hidden when user IS signed in
 let publicPages = [
-//   '/signup1',
+  '/signup1',
   '/signin',
 ];
 
@@ -52,23 +54,57 @@ auth.onAuthStateChanged( function (user) {
   checkUserStatus(user);
 });
 
+
+
+    //now we are getting the document that contains the subscription info
+    //this is the doc inside of a doc
+    const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
+    const docSnapSub = await getDoc(docRefSub);
+    //this checks to see if the doc exists
+    if (docSnapSub.exists()) {
+
+
+      
 //function to check if user is signed in
 function checkUserStatus(user) {
   if (user) {
-      // User is signed in.
-      if (publicPages.includes(currentPath)) {
-          window.location.replace('/myaccount');
-      } else {
-          console.log('User is logged in!');
-          console.log('Email: ' + user.email);
-          console.log('UID: ' + user.uid);
-          loadingScreen.style.display = 'none';
-          // New Home links
-          notSignedSchedule.style.display = 'none';
-          signUp.style.display = 'none';
-          logInButton.style.display = 'none';
+    // User is signed in.
 
-      }
+    //check if the user has a subscription
+    //this snapshot is how we get the subscription id
+    //we then store it in the global variable
+    const subSnapshot = await getDocs(collection(db, "Clients", userId, "subscriptions"));
+    subSnapshot.forEach((doc) => {
+    subId = doc.id;
+    });
+    //now we are getting the document that contains the subscription info
+    //this is the doc inside of a doc
+    const docRefSub = doc(db, "Clients", userId, "subscriptions", subId);
+    const docSnapSub = await getDoc(docRefSub);
+    
+    //this checks to see if the doc exists
+    if (docSnapSub.!exists()) {
+      if (publicPages.includes(currentPath)) {
+        window.location.replace('/subscribe');
+    }
+      
+    } else {
+
+    //redirect to my account if the user is signed in & subscribed
+    if (publicPages.includes(currentPath)) {
+        window.location.replace('/myaccount');
+    } else {
+        console.log('User is logged in!');
+        console.log('Email: ' + user.email);
+        console.log('UID: ' + user.uid);
+        loadingScreen.style.display = 'none';
+        // New Home links
+        notSignedSchedule.style.display = 'none';
+        signUp.style.display = 'none';
+        logInButton.style.display = 'none';
+
+    }
+      
   } else {
       // User is signed out.
       if (privatePages.includes(currentPath)) {
@@ -85,6 +121,7 @@ function checkUserStatus(user) {
           logInButton.style.display = 'block';
 
       }
+    }
   }
 }
 
