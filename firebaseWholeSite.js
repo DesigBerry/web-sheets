@@ -19,6 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const firebase = require('firebase');
 
 // initialize Firestore
 // const db = getFirestore();
@@ -57,7 +58,7 @@ let publicPages = [
 // async checkUserStatus();
 
 //function called whenever authentication state changes
-auth.onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {
   checkUserStatus(user);
 });
       
