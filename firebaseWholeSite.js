@@ -20,6 +20,8 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
+app;
+
 // initialize Firestore
 const db = getFirestore();
 
@@ -55,8 +57,6 @@ let publicPages = [
 
 // //check if user is signed in when page loads
 // async checkUserStatus();
-
-app;
 
 //function called whenever authentication state changes
 auth.onAuthStateChanged((user) => {
