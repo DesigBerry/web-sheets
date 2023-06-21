@@ -57,7 +57,7 @@ let publicPages = [
 // async checkUserStatus();
 
 //function called whenever authentication state changes
-auth.onAuthStateChanged( function (user) {
+firebase.auth.onAuthStateChanged((user) => {
   checkUserStatus(user);
 });
       
