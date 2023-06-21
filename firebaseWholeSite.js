@@ -21,7 +21,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 // initialize Firestore
-// const db = getFirestore();
+const db = getFirestore();
 
 //variables
 let currentPath = window.location.pathname;
@@ -56,6 +56,8 @@ let publicPages = [
 // //check if user is signed in when page loads
 // async checkUserStatus();
 
+app;
+
 //function called whenever authentication state changes
 auth.onAuthStateChanged((user) => {
   checkUserStatus(user);
@@ -67,7 +69,7 @@ async function checkUserStatus(user) {
     // User is signed in.
 
     //initialize Firestore
-    const db = getFirestore();
+    // const db = getFirestore();
 
     userId = user.uid;
     //check if the user has a subscription
