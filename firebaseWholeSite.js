@@ -21,7 +21,7 @@ const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
 // initialize Firestore
-// const db = getFirestore();
+const db = getFirestore();
 
 //variables
 let currentPath = window.location.pathname;
