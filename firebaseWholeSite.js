@@ -15,13 +15,21 @@ const firebaseConfig = {
     measurementId: "G-36YCSJZJEN"
   };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+//initialize Firebase
+let app;
+
+// Check if Firebase app has already been initialized
+try {
+  app = getApp();
+} catch {
+  app = initializeApp(firebaseConfig);
+}
+
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 
-// initialize Firestore
-// const db = getFirestore();
+//initialize Firestore
+const db = getFirestore();
 
 //variables
 let currentPath = window.location.pathname;
@@ -67,7 +75,7 @@ async function checkUserStatus(user) {
     // User is signed in.
 
     //initialize Firestore
-    const db = getFirestore();
+    // const db = getFirestore();
 
     userId = user.uid;
     //check if the user has a subscription
