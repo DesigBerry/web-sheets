@@ -67,7 +67,7 @@ async function checkUserStatus(user) {
     // User is signed in.
 
     //initialize Firestore
-    const db = getFirestore();
+    // const db = getFirestore();
 
     userId = user.uid;
     //check if the user has a subscription
