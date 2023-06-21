@@ -57,7 +57,7 @@ let publicPages = [
 // async checkUserStatus();
 
 //function called whenever authentication state changes
-auth.onAuthStateChanged((user) => {
+async auth.onAuthStateChanged((user) => {
   if (user) {
     // User is signed in.
 
