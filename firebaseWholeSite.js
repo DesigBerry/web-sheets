@@ -57,7 +57,12 @@ let publicPages = [
 // async checkUserStatus();
 
 //function called whenever authentication state changes
-async auth.onAuthStateChanged((user) => {
+firebase.auth.onAuthStateChanged((user) => {
+  checkUserStatus(user);
+});
+      
+//function to check if user is signed in
+async function checkUserStatus(user) {
   if (user) {
     // User is signed in.
 
@@ -126,8 +131,7 @@ async auth.onAuthStateChanged((user) => {
       }
     
     }
-    
-});
+   }
 
 
 //logout function
